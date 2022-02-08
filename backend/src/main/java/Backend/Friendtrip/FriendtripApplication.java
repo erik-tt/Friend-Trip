@@ -5,12 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
-//
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class FriendtripApplication {
@@ -28,9 +24,10 @@ class SQLCON implements CommandLineRunner {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
      
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-    }
+    //It finds two main classes and wont compile
+    //public static void main(String[] args) {
+       // SpringApplication.run(FriendtripApplication.class, args);
+   // }
  
     @Override
     public void run(String... args) throws Exception {
