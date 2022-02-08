@@ -17,7 +17,7 @@ public class FriendtripApplication {
 
 }
 
-//Snakke med database via JDBC template
+//Snakke med database via JDBC template, denne blir en egen public class etterhvert.. kun eksempel
 @SpringBootApplication
 class SQLCON implements CommandLineRunner {
 
