@@ -1,6 +1,0 @@
-target
-bin
-*.json
-
-# mac
-.DS_Store
