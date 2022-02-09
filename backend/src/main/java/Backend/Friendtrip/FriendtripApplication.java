@@ -32,7 +32,7 @@ class SQLCON implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String sql = "INSERT INTO Users (Name) VALUES (?)"; //Gitt at du har laget en tabell allerede
-         
+        jdbcTemplate.execute("Insert into Users (Name) Values ('Eksempel')"); //en annen måte å utføre spørring
         int result = jdbcTemplate.update(sql, "Ole");
          
         if (result > 0) {
