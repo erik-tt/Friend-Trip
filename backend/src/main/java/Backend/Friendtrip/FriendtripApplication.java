@@ -1,6 +1,5 @@
-package Backend.Friendtrip;
+package backend.friendtrip;
 
-//Databaserelaterte imports
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,25 +8,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @SpringBootApplication
-public class FriendtripApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(FriendtripApplication.class, args);
-	}
-
-}
-
-//Snakke med database via JDBC template, denne blir en egen public class etterhvert.. kun eksempel
-@SpringBootApplication
-class SQLCON implements CommandLineRunner {
+public class FriendtripApplication implements CommandLineRunner {
 
 	@Autowired
     private JdbcTemplate jdbcTemplate;
      
     //It finds two main classes and wont compile
-    //public static void main(String[] args) {
-       // SpringApplication.run(FriendtripApplication.class, args);
-   // }
+   public static void main(String[] args) {
+        SpringApplication.run(FriendtripApplication.class, args);
+    }
  
     @Override
     public void run(String... args) throws Exception {
@@ -36,4 +25,3 @@ class SQLCON implements CommandLineRunner {
     }
 
 }
-
