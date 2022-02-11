@@ -10,8 +10,7 @@ import java.util.regex.*;
 @Entity
 public class User {
     
-    private @Id @GeneratedValue Long id;
-    private String userName;
+    private @Id String userName;
     private String password;
 
     //Bio for future extension.
