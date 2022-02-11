@@ -9,7 +9,7 @@ Install java 17 and use the command `mvn install` in the backend directory to pr
 Run the spring application with the command `mvn spring-boot:run`. This will start the spring server. The database need to be connected to be able to run the application.
 
 ## Test the project
-To just run the test classes use `mvn test``.
+To only run the tests use `mvn test`.
 
 ## Connecting to database with JPA Hibernate
 In order for every developer to communicate with MYSQL server provided by `XAMPP` they have to
