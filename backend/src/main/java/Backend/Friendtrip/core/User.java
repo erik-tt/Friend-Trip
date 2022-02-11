@@ -24,6 +24,8 @@ public class User {
         setUserName(userName);
         setPassword(password);
     }
+    protected User(){} //neccessary for autowired to work
+    
     
     /**
      * Sets the user name of a user.

@@ -6,9 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-import Backend.Friendtrip.core.Trip;
-import Backend.Friendtrip.core.User;
-import Backend.Friendtrip.core.UserRepository;
+import backend.friendtrip.core.User;
+import backend.friendtrip.core.UserRepository;
 
 
 @SpringBootApplication
@@ -28,7 +27,7 @@ public class FriendtripApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String username = "something"; //henta fra frontend
 
-        UserRepo.save(new User("askeland", "password"));
+    
         
         
         System.out.println(UserRepo.existsByuserName("askelandsdsda"));

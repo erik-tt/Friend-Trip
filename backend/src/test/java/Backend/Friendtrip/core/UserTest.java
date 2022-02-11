@@ -1,9 +1,11 @@
-package backend.friendtrip.core;
+package backend.Friendtrip.core;
 
 import java.beans.Transient;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import backend.friendtrip.core.User;
 
 
 public class UserTest {
