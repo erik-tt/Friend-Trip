@@ -21,7 +21,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<!--Does not work if set to true, need to fix-->
-		<skipTests>true</skipTests>
+		
 	</properties>
 
 

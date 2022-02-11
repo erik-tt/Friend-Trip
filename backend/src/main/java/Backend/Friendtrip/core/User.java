@@ -1,4 +1,4 @@
-package backend.friendtrip.core;
+package Backend.Friendtrip.core;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +9,17 @@ import javax.persistence.Id;
 public class User {
     
     private @Id @GeneratedValue Long id;
-    private String userName;
+    private String username;
     private String password;
 
+    protected User(){};
     //Bio for future extension.
 
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
+    }
+    public String getUserName() {
+        return this.username;
     }
 }
