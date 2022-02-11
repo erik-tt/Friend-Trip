@@ -21,8 +21,8 @@ public class User {
      * @param password the password of a string
      */
     public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+        setUserName(userName);
+        setPassword(password);
     }
     
     /**
@@ -33,7 +33,7 @@ public class User {
     public void setUserName(String userName) throws IllegalArgumentException {
         
         //Add functionality for distinct users
-        if (userName.matches("^[a-zA-Z0-9]*$") && (userName != null) 
+        if (userName.matches("^[a-zA-Z0-9ÆØÅæøå_-]*$") && (userName != null) 
         && (!userName.equals("")) && (userName.length() < 30)) {
 
             this.userName = userName;
@@ -70,6 +70,21 @@ public class User {
             throw new IllegalArgumentException(
                 "Password cannot be shorter than 7 characters.");
         }
+    }
 
+    /**
+     * gets username
+     * @return userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * gets password
+     * @return password
+     */
+    public String getPassword() {
+        return password;
     }
 }
