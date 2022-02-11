@@ -1,4 +1,4 @@
-package Backend.Friendtrip;
+package backend.friendtrip;
 
 import org.springframework.web.bind.annotation.RestController;
 
