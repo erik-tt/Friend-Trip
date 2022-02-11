@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+
+import Backend.Friendtrip.core.Trip;
 import Backend.Friendtrip.core.User;
 import Backend.Friendtrip.core.UserRepository;
 
@@ -14,7 +16,8 @@ import Backend.Friendtrip.core.UserRepository;
 public class FriendtripApplication implements CommandLineRunner {
 
 	@Autowired
-    UserRepository repo;
+    UserRepository UserRepo;
+    
 
      
     //It finds two main classes and wont compile
@@ -26,12 +29,12 @@ public class FriendtripApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         for (int i = 0; i < 10; i++) {
-            repo.save(new User("Ole", "Passord"));
-            
+            UserRepo.save( new User("Ole", "Passord"));
+           
         }
         
 
-        Iterable<User> iterator = repo.findAll();
+        Iterable<User> iterator = UserRepo.findAll();
          
         System.out.println("All users: ");
         iterator.forEach(item -> System.out.println(item.getUserName()));
