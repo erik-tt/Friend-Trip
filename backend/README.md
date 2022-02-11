@@ -1,9 +1,9 @@
 # Backend
 
-Written with java 17 and Spring. This project uses maven
+Written with java 17 and Spring. This project uses maven.
 
 ## Build the project
-Install java 17 and use the command `mvn install` in the backend directory to prepare the project. This will install the necessary dependencies and compile the project. To compile/build the project `mvn compile` can be used.
+Install maven and java 17 and use the command `mvn install` in the backend directory to prepare the project. This will install the necessary dependencies and compile the project. To only compile/build the project `mvn compile` can be used.
 
 ## Run the project
 Run the spring application with the command `mvn spring-boot:run`. This will start the spring server. The database need to be connected to be able to run the application.
