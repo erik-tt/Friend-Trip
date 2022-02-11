@@ -6,9 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-import Backend.Friendtrip.core.Trip;
-import Backend.Friendtrip.core.User;
-import Backend.Friendtrip.core.UserRepository;
+import backend.friendtrip.core.Trip;
+import backend.friendtrip.core.User;
+import backend.friendtrip.core.UserRepository;
 
 
 @SpringBootApplication
