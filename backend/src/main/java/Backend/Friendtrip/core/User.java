@@ -15,28 +15,43 @@ public class User {
     private String password;
 
     //Bio for future extension.
-
+    /**
+     * Constructer of the user class
+     * @param userName user name as a string
+     * @param password the password of a string
+     */
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
     
+    /**
+     * Sets the user name of a user.
+     * @param userName the user name of a user
+     * @throws IllegalArgumentException
+     */
     public void setUserName(String userName) throws IllegalArgumentException {
         
         //Add functionality for distinct users
-        if (userName.matches("^[a-zA-Z]*$") && (userName != null) 
+        if (userName.matches("^[a-zA-Z0-9]*$") && (userName != null) 
         && (!userName.equals("")) && (userName.length() < 30)) {
 
             this.userName = userName;
         }
         else {
-            throw new IllegalArgumentException("User name  is not valid");
+            throw new IllegalArgumentException(
+                "The user name must consist of letters or numbers and cannot be longer than 30 characters");
         }
        
         
     }
-    
-    public void setPassword(String password) {
+
+    /**
+     * Sets a new password
+     * @param password The password as a string. 
+     * @throws IllegalArgumentException 
+     */
+    public void setPassword(String password) throws IllegalArgumentException {
 
         if (password.length() > 7) {
             int count = 0;
@@ -47,9 +62,13 @@ public class User {
             }
             if (count == 0) {
                 throw new IllegalArgumentException(
-                    "The password does not contain a special character or is under 8 letters");
+                    "The password does not contain a special character.");
             }
             this.password = password;
+        }
+        else {
+            throw new IllegalArgumentException(
+                "Password cannot be shorter than 7 characters.");
         }
 
     }
