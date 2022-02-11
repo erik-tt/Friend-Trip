@@ -3,9 +3,13 @@
 Written with java 17 and Spring. This project uses maven
 
 ## Build the project
-Install java 17 and use the command `mvn install` in the backend directory to prepare the project. For now it skips the tests, but this will usually run them. To build the project `mvn compile` can be used.
+Install java 17 and use the command `mvn install` in the backend directory to prepare the project. This will install the necessary dependencies and compile the project. To compile/build the project `mvn compile` can be used.
 
-## Run the projec
+## Run the project
+Run the spring application with the command `mvn spring-boot:run`. This will start the spring server. The database need to be connected to be able to run the application.
+
+## Test the project
+To just run the test classes use `mvn test``.
 
 ## Connecting to database with JPA Hibernate
 In order for every developer to communicate with MYSQL server provided by `XAMPP` they have to
