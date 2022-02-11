@@ -4,13 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import java.util.regex.*;
 
 @Entity
+@Table(name = "user")
 public class User {
     
-    private @Id String userName;
+   
+    @Id private String userName;
+
     private String password;
 
     //Bio for future extension.

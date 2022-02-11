@@ -5,8 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-import backend.friendtrip.core.Trip;
 import backend.friendtrip.core.User;
 import backend.friendtrip.core.UserRepository;
 
@@ -26,7 +24,7 @@ public class FriendtripApplication implements CommandLineRunner {
  
     @Override
     public void run(String... args) throws Exception {
-        String username = "something"; //henta fra frontend
+        UserRepo.save( new User("askeland", "123456789!"));
 
     
         

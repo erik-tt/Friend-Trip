@@ -2,6 +2,7 @@ package backend.friendtrip.core;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -13,7 +14,8 @@ public class Trip {
     private String description;
     private int difficulty;
     //private String type;
-    private final User owner;
+    
+    @OneToOne private final User owner;
 
     /**
      * The constructor of a trip.

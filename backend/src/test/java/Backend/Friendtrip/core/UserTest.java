@@ -1,4 +1,4 @@
-package backend.Friendtrip.core;
+package backend.friendtrip.core;
 
 import java.beans.Transient;
 
