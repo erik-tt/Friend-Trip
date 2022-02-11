@@ -31,8 +31,8 @@ public class FriendtripApplication implements CommandLineRunner {
         UserRepo.save(new User("askeland", "password"));
         
         
-        System.out.println(UserRepo.existsByusername("askelandsdsda"));
-        System.out.println(UserRepo.findByusername("askeland").getUserName());
+        System.out.println(UserRepo.existsByuserName("askelandsdsda"));
+        System.out.println(UserRepo.findByuserName("askeland").getUserName());
         
         
     }

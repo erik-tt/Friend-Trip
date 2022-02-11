@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, Long> {
 
   
-  boolean existsByusername(String username);
-  User findByusername(String username);
+  boolean existsByusername(String userName);
+  User findByusername(String userName);
   
   
 
