@@ -8,8 +8,8 @@ import javax.persistence.Id;
 @Entity
 public class User {
     
-    private @Id @GeneratedValue Long id;
-    private String username;
+    
+    private @Id String username;
     private String password;
 
     protected User(){};

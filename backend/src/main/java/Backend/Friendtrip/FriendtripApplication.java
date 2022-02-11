@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import Backend.Friendtrip.core.Trip;
@@ -27,17 +26,14 @@ public class FriendtripApplication implements CommandLineRunner {
  
     @Override
     public void run(String... args) throws Exception {
+        String username = "something"; //henta fra frontend
 
-        for (int i = 0; i < 10; i++) {
-            UserRepo.save( new User("Ole", "Passord"));
-           
-        }
+        UserRepo.save(new User("askeland", "password"));
         
-
-        Iterable<User> iterator = UserRepo.findAll();
-         
-        System.out.println("All users: ");
-        iterator.forEach(item -> System.out.println(item.getUserName()));
+        
+        System.out.println(UserRepo.existsByusername("askelandsdsda"));
+        System.out.println(UserRepo.findByusername("askeland").getUserName());
+        
         
     }
 
