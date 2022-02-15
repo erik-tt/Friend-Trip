@@ -13,7 +13,6 @@ public class Trip {
     private String title;
     private String description;
     private int difficulty;
-    //private String type;
     
     @OneToOne private final User owner;
 
@@ -22,10 +21,12 @@ public class Trip {
      * @param title as a String.
      * @param description as a String.
      * @param owner as a User class.
+     * @param difficulty as a int.
      */
-    public Trip(String title, String description, User owner){
+    public Trip(String title, String description, User owner, int difficulty){
         setTitle(title);
         setDescription(description);
+        setDifficulty(difficulty);
         this.owner = owner;
     }
 
@@ -36,7 +37,7 @@ public class Trip {
      */
     public void setTitle(String title) throws IllegalArgumentException {
         
-        if (title.matches("^[a-zA-Z0-9ÆØÅæøå- ]") && (title != null) 
+        if ((title.matches("^[a-zA-Z0-9ÆØÅæøå!-_ ]*$")) && (title != null) 
         && (!title.equals("")) && (title.length() < 30)) {
             this.title = title;
         }
@@ -53,7 +54,7 @@ public class Trip {
      */
     public void setDescription(String description) throws IllegalArgumentException {
 
-        if (description.equals("")) {
+        if (description.equals("") || description.equals(null)) {
             throw new IllegalArgumentException(
                 "description cannot be empty");
         }
@@ -67,7 +68,7 @@ public class Trip {
      */
     public void setDifficulty(int difficulty) throws IllegalArgumentException {
         
-        if (difficulty > 3 || difficulty < 1) {
+        if ((difficulty > 3 || difficulty < 1)) {
             throw new IllegalArgumentException(
                 "the difficulty must be an int between 1 and 3");
         }
@@ -92,9 +93,13 @@ public class Trip {
 
     /**
      * Gets the owner.
-     * @return the owner a User.
+     * @return the owner as a User.
      */
     public User getOwner() {
         return owner;
+    }
+
+    public int getDifficulty(){
+        return difficulty;
     }
 }
