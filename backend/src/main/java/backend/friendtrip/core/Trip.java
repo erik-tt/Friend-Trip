@@ -106,4 +106,8 @@ public class Trip {
     public User getOwner() {
         return owner;
     }
+
+    public int getDifficulty(){
+        return difficulty;
+    }
 }
