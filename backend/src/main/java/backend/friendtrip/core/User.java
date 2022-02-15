@@ -6,15 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.util.Objects;
 import java.util.regex.*;
 
 @Entity
-@Table(name = "user")
+/* @Table(name = "user") */
 public class User {
     
    
-    @Id private String userName;
-
+    private @Id @GeneratedValue Long id;
+    private String userName;
     private String password;
 
     //Bio for future extension.
@@ -27,7 +28,30 @@ public class User {
         setUserName(userName);
         setPassword(password);
     }
-    protected User(){} //neccessary for autowired to work
+    private User(){} //neccessary for autowired to work
+
+    @Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(id, user.id) &&
+			Objects.equals(userName, user.userName) &&
+			Objects.equals(password, user.password);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, userName, password);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
     
     
     /**
@@ -92,4 +116,13 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    @Override
+	public String toString() {
+		return "User{" +
+			"id=" + id +
+			", firstName='" + userName + '\'' +
+			", lastName='" + password + '\'' +
+			'}';
+	}
 }
