@@ -4,3 +4,9 @@ bin
 
 # mac
 .DS_Store
+backend/.factorypath
+backend/.classpath
+backend/.settings/org.eclipse.core.resources.prefs
+backend/.project
+backend/.settings/org.eclipse.jdt.apt.core.prefs
+backend/.settings/org.eclipse.jdt.core.prefs
