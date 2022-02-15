@@ -13,7 +13,6 @@ public class Trip {
     private String title;
     private String description;
     private int difficulty;
-    //private String type;
     
     @OneToOne private final User owner;
 
@@ -22,10 +21,12 @@ public class Trip {
      * @param title as a String.
      * @param description as a String.
      * @param owner as a User class.
+     * @param difficulty as a int.
      */
-    public Trip(String title, String description, User owner){
+    public Trip(String title, String description, User owner, int difficulty){
         setTitle(title);
         setDescription(description);
+        setDifficulty(difficulty);
         this.owner = owner;
     }
 
@@ -92,7 +93,15 @@ public class Trip {
 
     /**
      * Gets the owner.
-     * @return the owner a User.
+     * @return the owner as a User.
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
+     * Gets the difficulty.
+     * @return the difficulty as a int.
      */
     public User getOwner() {
         return owner;
