@@ -37,7 +37,7 @@ public class Trip {
      */
     public void setTitle(String title) throws IllegalArgumentException {
         
-        if (title.matches("^[a-zA-Z0-9ÆØÅæøå- ]") && (title != null) 
+        if ((title.matches("^[a-zA-Z0-9ÆØÅæøå!-_ ]*$")) && (title != null) 
         && (!title.equals("")) && (title.length() < 30)) {
             this.title = title;
         }
@@ -54,7 +54,7 @@ public class Trip {
      */
     public void setDescription(String description) throws IllegalArgumentException {
 
-        if (description.equals("")) {
+        if (description.equals("") || description.equals(null)) {
             throw new IllegalArgumentException(
                 "description cannot be empty");
         }
@@ -68,7 +68,7 @@ public class Trip {
      */
     public void setDifficulty(int difficulty) throws IllegalArgumentException {
         
-        if (difficulty > 3 || difficulty < 1) {
+        if ((difficulty > 3 || difficulty < 1)) {
             throw new IllegalArgumentException(
                 "the difficulty must be an int between 1 and 3");
         }
