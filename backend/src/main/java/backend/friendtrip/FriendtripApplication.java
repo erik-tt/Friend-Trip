@@ -25,10 +25,6 @@ public class FriendtripApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         UserRepo.save( new User("askeland", "123456789!"));
-
-    
-        
-        
         System.out.println(UserRepo.existsByuserName("askelandsdsda"));
         System.out.println(UserRepo.findByuserName("askeland").getUserName());
         
