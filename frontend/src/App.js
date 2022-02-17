@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
  
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -16,11 +16,9 @@ function App() {
             <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
           </div>
           <div className="content">
-            <Routes>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/dashboard" component={Dashboard} />
-            </Routes>
           </div>
         </div>
       </BrowserRouter>
