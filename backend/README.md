@@ -1,11 +1,18 @@
 # Backend
 
-Written with java 17 and Spring. This project uses maven
+Written with java 17 and Spring. This project uses maven.
 
 ## Build the project
-Install java 17 and use the command `mvn install` in the backend directory to prepare the project. For now it skips the tests, but this will usually run them. To build the project `mvn compile` can be used.
+Install maven and java 17 and use the command `mvn install` in the backend directory to prepare the project. This will install the necessary dependencies and compile the project. To only compile/build the project `mvn compile` can be used.
 
-## Run the projec
+## Run the project
+Run the spring application with the command `mvn spring-boot:run`. This will start the spring server. The database need to be connected to be able to run the application.
+
+## Test the project
+To only run the tests use `mvn test`. This will run the tests in the backend directory.
+
+## Set up a database with MySQL in terminal
+On a unix system (not tested on windows) install mysql. In the terminal start MySQL with `mysql.server start`. Then run `mysql -u root -p` and enter your password (if the password is not set, just press enter in the password field). Create database with `create database "name"`. Endre databasen du vil bruke med `use "name"`. You can find the directory where your database is stored with `SELECT @@datadir, @@innodb_data_home_dir`. The `SHOW DATABASE` command will show all of the databases. MySQL use port 3306 is the standard. Regular SQL query apply to the database. 
 
 ## Connecting to database with JPA Hibernate
 In order for every developer to communicate with MYSQL server provided by `XAMPP` they have to
