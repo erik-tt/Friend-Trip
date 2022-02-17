@@ -1,6 +1,6 @@
 target
 bin
-*.json
+package-lock.json
 
 # mac
 .DS_Store
