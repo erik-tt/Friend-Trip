@@ -28,7 +28,7 @@ public class User {
         setUserName(userName);
         setPassword(password);
     }
-    private User(){} //neccessary for autowired to work
+    private User(){}
 
     @Override
 	public boolean equals(Object o) {

@@ -34170,6 +34170,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           }
         }).then(function (schema) {
           _this2.schema = schema.entity;
+          _this2.links = userCollection.entity._links;
           return userCollection;
         });
       }).then(function (userCollection) {
@@ -34181,12 +34182,12 @@ var App = /*#__PURE__*/function (_React$Component) {
         });
       }).then(function (userPromises) {
         return when.all(userPromises);
-      }).done(function (userCollection) {
+      }).done(function (users) {
         _this2.setState({
-          users: userCollection.entity._embedded.users,
+          users: users,
           attributes: Object.keys(_this2.schema.properties),
           pageSize: pageSize,
-          links: userCollection.entity._links
+          links: _this2.links
         });
       });
     }
@@ -34290,7 +34291,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "updatePageSize",
     value: function updatePageSize(pageSize) {
       if (pageSize !== this.state.pageSize) {
-        this.loadFromServer(pageSize);
+        this.loadFromServer(this.state.pageSize);
       }
     } // end::update-page-size[]
     // tag::follow-1[]
@@ -34307,15 +34308,6 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CreateDialog, {
         attributes: this.state.attributes,
         onCreate: this.onCreate
-      }), /*#__PURE__*/React.createElement(EmployeeList, {
-        employees: this.state.employees,
-        links: this.state.links,
-        pageSize: this.state.pageSize,
-        attributes: this.state.attributes,
-        onNavigate: this.onNavigate,
-        onUpdate: this.onUpdate,
-        onDelete: this.onDelete,
-        updatePageSize: this.updatePageSize
       }));
     }
   }]);
@@ -34371,16 +34363,16 @@ var CreateDialog = /*#__PURE__*/function (_React$Component2) {
       });
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
         href: "#createUser"
-      }, "Create"), /*#__PURE__*/React.createElement("div", {
+      }, "Sign Up"), /*#__PURE__*/React.createElement("div", {
         id: "createUser",
         className: "modalDialog"
       }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
         href: "#",
         title: "Close",
         className: "close"
-      }, "X"), /*#__PURE__*/React.createElement("h2", null, "Create new user"), /*#__PURE__*/React.createElement("form", null, inputs, /*#__PURE__*/React.createElement("button", {
+      }, "X"), /*#__PURE__*/React.createElement("h2", null, "Welcome"), /*#__PURE__*/React.createElement("form", null, inputs, /*#__PURE__*/React.createElement("button", {
         onClick: this.handleSubmit
-      }, "Create")))));
+      }, "Sign Up")))));
     }
   }]);
 
@@ -34453,135 +34445,106 @@ var UpdateDialog = /*#__PURE__*/function (_React$Component3) {
 }(React.Component);
 
 ;
+/* class UserList extends React.Component{
+	constructor(props) {
+		super(props);
+		this.handleNavFirst = this.handleNavFirst.bind(this);
+		this.handleNavPrev = this.handleNavPrev.bind(this);
+		this.handleNavNext = this.handleNavNext.bind(this);
+		this.handleNavLast = this.handleNavLast.bind(this);
+		this.handleInput = this.handleInput.bind(this);
+	}
 
-var UserList = /*#__PURE__*/function (_React$Component4) {
-  _inherits(UserList, _React$Component4);
+	// tag::handle-page-size-updates[]
+	handleInput(e) {
+		e.preventDefault();
+		const pageSize = ReactDOM.findDOMNode(this.refs.pageSize).value;
+		if (/^[0-9]+$/.test(pageSize)) {
+			this.props.updatePageSize(pageSize);
+		} else {
+			ReactDOM.findDOMNode(this.refs.pageSize).value = pageSize.substring(0, pageSize.length - 1);
+		}
+	}
+	// end::handle-page-size-updates[]
 
-  var _super4 = _createSuper(UserList);
+	// tag::handle-nav[]
+	handleNavFirst(e){
+		e.preventDefault();
+		this.props.onNavigate(this.props.links.first.href);
+	}
+	handleNavPrev(e) {
+		e.preventDefault();
+		this.props.onNavigate(this.props.links.prev.href);
+	}
+	handleNavNext(e) {
+		e.preventDefault();
+		this.props.onNavigate(this.props.links.next.href);
+	}
+	handleNavLast(e) {
+		e.preventDefault();
+		this.props.onNavigate(this.props.links.last.href);
+	}
+	// end::handle-nav[]
+	
+	// tag::user-list-render[]
+	render() {
+		const user = this.props.user.map(user =>
+			<User key={user.entity._links.self.href}
+					  user={user}
+					  attributes={this.props.attributes}
+					  onUpdate={this.props.onUpdate}
+					  onDelete={this.props.onDelete}/>
+		);
 
-  function UserList(props) {
-    var _this12;
+		const navLinks = [];
+		if ("first" in this.props.links) {
+			navLinks.push(<button key="first" onClick={this.handleNavFirst}>&lt;&lt;</button>);
+		}
+		if ("prev" in this.props.links) {
+			navLinks.push(<button key="prev" onClick={this.handleNavPrev}>&lt;</button>);
+		}
+		if ("next" in this.props.links) {
+			navLinks.push(<button key="next" onClick={this.handleNavNext}>&gt;</button>);
+		}
+		if ("last" in this.props.links) {
+			navLinks.push(<button key="last" onClick={this.handleNavLast}>&gt;&gt;</button>);
+		}
 
-    _classCallCheck(this, UserList);
+		return (
+			<div>
+				<input ref="pageSize" defaultValue={this.props.pageSize} onInput={this.handleInput}/>
+				<table>
+					<tbody>
+						<tr>
+							<th>Username</th>
+							<th>Password</th>
+							<th></th>
+							<th></th>
+						</tr>
+						{users}
+					</tbody>
+				</table>
+				<div>
+					{navLinks}
+				</div>
+			</div>
+		)
+	}
+} */
 
-    _this12 = _super4.call(this, props);
-    _this12.handleNavFirst = _this12.handleNavFirst.bind(_assertThisInitialized(_this12));
-    _this12.handleNavPrev = _this12.handleNavPrev.bind(_assertThisInitialized(_this12));
-    _this12.handleNavNext = _this12.handleNavNext.bind(_assertThisInitialized(_this12));
-    _this12.handleNavLast = _this12.handleNavLast.bind(_assertThisInitialized(_this12));
-    _this12.handleInput = _this12.handleInput.bind(_assertThisInitialized(_this12));
-    return _this12;
-  } // tag::handle-page-size-updates[]
+var User = /*#__PURE__*/function (_React$Component4) {
+  _inherits(User, _React$Component4);
 
-
-  _createClass(UserList, [{
-    key: "handleInput",
-    value: function handleInput(e) {
-      e.preventDefault();
-      var pageSize = ReactDOM.findDOMNode(this.refs.pageSize).value;
-
-      if (/^[0-9]+$/.test(pageSize)) {
-        this.props.updatePageSize(pageSize);
-      } else {
-        ReactDOM.findDOMNode(this.refs.pageSize).value = pageSize.substring(0, pageSize.length - 1);
-      }
-    } // end::handle-page-size-updates[]
-    // tag::handle-nav[]
-
-  }, {
-    key: "handleNavFirst",
-    value: function handleNavFirst(e) {
-      e.preventDefault();
-      this.props.onNavigate(this.props.links.first.href);
-    }
-  }, {
-    key: "handleNavPrev",
-    value: function handleNavPrev(e) {
-      e.preventDefault();
-      this.props.onNavigate(this.props.links.prev.href);
-    }
-  }, {
-    key: "handleNavNext",
-    value: function handleNavNext(e) {
-      e.preventDefault();
-      this.props.onNavigate(this.props.links.next.href);
-    }
-  }, {
-    key: "handleNavLast",
-    value: function handleNavLast(e) {
-      e.preventDefault();
-      this.props.onNavigate(this.props.links.last.href);
-    } // end::handle-nav[]
-    // tag::user-list-render[]
-
-  }, {
-    key: "render",
-    value: function render() {
-      var _this13 = this;
-
-      var user = this.props.user.map(function (user) {
-        return /*#__PURE__*/React.createElement(User, {
-          key: user.entity._links.self.href,
-          user: user,
-          attributes: _this13.props.attributes,
-          onUpdate: _this13.props.onUpdate,
-          onDelete: _this13.props.onDelete
-        });
-      });
-      var navLinks = [];
-
-      if ("first" in this.props.links) {
-        navLinks.push( /*#__PURE__*/React.createElement("button", {
-          key: "first",
-          onClick: this.handleNavFirst
-        }, "<<"));
-      }
-
-      if ("prev" in this.props.links) {
-        navLinks.push( /*#__PURE__*/React.createElement("button", {
-          key: "prev",
-          onClick: this.handleNavPrev
-        }, "<"));
-      }
-
-      if ("next" in this.props.links) {
-        navLinks.push( /*#__PURE__*/React.createElement("button", {
-          key: "next",
-          onClick: this.handleNavNext
-        }, ">"));
-      }
-
-      if ("last" in this.props.links) {
-        navLinks.push( /*#__PURE__*/React.createElement("button", {
-          key: "last",
-          onClick: this.handleNavLast
-        }, ">>"));
-      }
-
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
-        ref: "pageSize",
-        defaultValue: this.props.pageSize,
-        onInput: this.handleInput
-      }), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Username"), /*#__PURE__*/React.createElement("th", null, "Password"), /*#__PURE__*/React.createElement("th", null), /*#__PURE__*/React.createElement("th", null)), users)), /*#__PURE__*/React.createElement("div", null, navLinks));
-    }
-  }]);
-
-  return UserList;
-}(React.Component);
-
-var User = /*#__PURE__*/function (_React$Component5) {
-  _inherits(User, _React$Component5);
-
-  var _super5 = _createSuper(User);
+  var _super4 = _createSuper(User);
 
   function User(props) {
-    var _this14;
+    var _this12;
 
     _classCallCheck(this, User);
 
-    _this14 = _super5.call(this, props);
-    _this14.handleDelete = _this14.handleDelete.bind(_assertThisInitialized(_this14));
-    return _this14;
+    _this12 = _super4.call(this, props);
+    _this12.handleDelete = _this12.handleDelete.bind(_assertThisInitialized(_this12));
+    return _this12;
   }
 
   _createClass(User, [{

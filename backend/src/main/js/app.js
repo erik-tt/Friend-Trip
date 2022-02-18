@@ -5,6 +5,7 @@ const ReactDOM = require('react-dom');
 const when = require('when');
 const client = require('./client');
 
+
 const follow = require('./follow'); // function to hop multiple links by "rel"
 
 const root = '/api'; 
@@ -32,6 +33,7 @@ class App extends React.Component {
 				headers: {'Accept': 'application/schema+json'}
 			}).then(schema => {
 				this.schema = schema.entity;
+				this.links = userCollection.entity._links;
 				return userCollection;
 			});
 		}).then(userCollection => { 
@@ -43,12 +45,12 @@ class App extends React.Component {
 			);
 		}).then(userPromises => { 
 			return when.all(userPromises);
-		}).done(userCollection => {
+		}).done(users => {
 			this.setState({
-				users: userCollection.entity._embedded.users,
+				users: users,
 				attributes: Object.keys(this.schema.properties),
 				pageSize: pageSize,
-				links: userCollection.entity._links});
+				links: this.links});
 		});
 	}
 	
@@ -145,14 +147,14 @@ class App extends React.Component {
 		return (
 			<div>
 				<CreateDialog attributes={this.state.attributes} onCreate={this.onCreate}/>
-				<UserList users={this.state.users}
+				{/* <UserList users={this.state.users}
 							  links={this.state.links}
 							  pageSize={this.state.pageSize}
 							  attributes={this.state.attributes}
 							  onNavigate={this.onNavigate}
 							  onUpdate={this.onUpdate}
 							  onDelete={this.onDelete}
-							  updatePageSize={this.updatePageSize}/>
+							  updatePageSize={this.updatePageSize}/> */}
 			</div>
 		)
 	}
@@ -185,7 +187,7 @@ class CreateDialog extends React.Component {
 	}
 
 	render() {
-		const inputs = this.props.attributes.map(attribute =>
+		const input = this.props.attributes.map(attribute =>
 			<p key={attribute}>
 				<input type="text" placeholder={attribute} ref={attribute} className="field"/>
 			</p>
@@ -193,17 +195,17 @@ class CreateDialog extends React.Component {
 
 		return (
 			<div>
-				<a href="#createUser">Create</a>
+				<a href="#createUser">Sign Up</a>
 
 				<div id="createUser" className="modalDialog">
 					<div>
 						<a href="#" title="Close" className="close">X</a>
 
-						<h2>Create new user</h2>
+						<h2>Welcome</h2>
 
 						<form>
 							{inputs}
-							<button onClick={this.handleSubmit}>Create</button>
+							<button onClick={this.handleSubmit}>Sign Up</button>
 						</form>
 					</div>
 				</div>
@@ -261,7 +263,7 @@ class UpdateDialog extends React.Component {
 
 };
 
-class UserList extends React.Component{
+/* class UserList extends React.Component{
 	constructor(props) {
 		super(props);
 		this.handleNavFirst = this.handleNavFirst.bind(this);
@@ -346,7 +348,7 @@ class UserList extends React.Component{
 			</div>
 		)
 	}
-}
+} */
 
 class User extends React.Component{
 	
@@ -376,7 +378,7 @@ class User extends React.Component{
 		)
 	} 
 
-
+}
 ReactDOM.render(
 	<App />,
 	document.getElementById('react')
