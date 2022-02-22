@@ -34555,7 +34555,7 @@ var User = /*#__PURE__*/function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.user.entity.userName), /*#__PURE__*/React.createElement("td", null, this.props.user.entity.password), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(UpdateDialog, {
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.user.entity.email), /*#__PURE__*/React.createElement("td", null, this.props.user.entity.username), /*#__PURE__*/React.createElement("td", null, this.props.user.entity.password), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(UpdateDialog, {
         user: this.props.user,
         attributes: this.props.attributes,
         onUpdate: this.props.onUpdate

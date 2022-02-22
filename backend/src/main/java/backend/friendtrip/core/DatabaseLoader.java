@@ -1,5 +1,6 @@
 package backend.friendtrip.core;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,10 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	@Override
 	public void run(String... strings) throws Exception {
-		this.repository.save(new User("Frodo", "Baggins-123"));
+		if(!repository.existsByUsername("admin")){
+			User admin = new User("admin@friendtrip.com", "admin", "1234-Abcd");
+			admin.setAdmin(true);
+			this.repository.save(admin);
+		}
 	}
 }

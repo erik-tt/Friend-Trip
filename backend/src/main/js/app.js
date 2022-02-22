@@ -364,7 +364,8 @@ class User extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.user.entity.userName}</td>
+				<td>{this.props.user.entity.email}</td>
+				<td>{this.props.user.entity.username}</td>
 				<td>{this.props.user.entity.password}</td>
 				<td>
 					<UpdateDialog user={this.props.user}
