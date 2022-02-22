@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/spring-guides/tut-react-and-spring-data-rest",
   "dependencies": {
+<<<<<<< HEAD
     "npx": "^10.2.2",
+=======
+    "@material-ui/core": "^4.12.3",
+>>>>>>> d19e86462ff969194bf6d8d5a8936b3549f7a09f
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "rest": "^1.3.1",
