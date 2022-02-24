@@ -8,7 +8,7 @@ function Login(props) {
  
   // handle button click of login form
   const handleLogin = () => {
-    props.history.push('/dashboard');
+    props.history.push('/Home');
   }
  
   return (
