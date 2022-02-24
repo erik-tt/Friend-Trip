@@ -4,7 +4,7 @@ function Home(props) {
  
   // handle click event of logout button
   const handleLogout = () => {    
-    props.history.push('/');
+    props.history.push('/Login.js');
   }
  
   return (
