@@ -6,14 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.Objects;
 import java.util.regex.*;
 
 @Entity
 /* @Table(name = "user") */
 public class User {
+    @Autowired
+    UserRepository repo;
     
-   
     private @Id @GeneratedValue Long id;
     private String userName;
     private String password;
@@ -63,7 +66,7 @@ public class User {
         
         //Add functionality for distinct users
         if (userName.matches("^[a-zA-Z0-9ÆØÅæøå_-]*$") && (userName != null) 
-        && (!userName.equals("")) && (userName.length() < 30)) {
+        && (!userName.equals("")) && (userName.length() < 30) && !repo.existsByuserName(userName)) {
 
             this.userName = userName;
         }
