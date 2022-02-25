@@ -1,6 +1,9 @@
 
 import {useRef, useState, useEffect, useContext} from 'react';
 import axios from "axios";
+import Logo from './files/Header2.png';
+import Home from './components/Home';
+import SignUp from './components/SignUp';
 
 //const [userNameLog, passwordLog] = useState('');
 
@@ -32,53 +35,64 @@ const Login = () => {
   
 
   return (
-    <>
-    {success ? (
-        <section>
-            <h1>Welcome to Friendrip!</h1>
-            <br />
-            <p>
-                <a href="#">Go to Home</a>
-            </p>
-        </section>
-    ) : (
-      
-    <section>
-      {/* <p ref={errRef} className={errMsg ? "errmsg" : 
-      "offscreen"} aria-live="assertive">{errMsg}</p> */}
-      <h1>Log in</h1>
-      <form h >
-        <label htmlFor="username">Username:</label>
-        <input 
-          type="text"  
-          id="username" 
-          ref={userRef}
-          autoComplete="off"
-          onChange={(e) => checkUsername(e.target.value)}
-          value={username}
-          required 
-        />
+    <><div class="split left">
+        <div class="centered">
+          <img height={"400px"} src={Logo} />
+        </div>
+      </div>
+        <>
+        <div class="split right">
+            <div class="centered">
+        {success ? (
+          
+              <section>
+                <h1>Welcome to Friendrip!</h1>
+                <br />
+                <p>
+                  <a href="#">Go to Home</a>
+                </p>
+              </section>
+            
+            ) : (
 
-        <label htmlFor="password">Password:</label>
-        <input 
-          type="password"  
-          id="password" 
-          onChange={(e) => axios.post()} 
-          value={password}
-          required 
-        />
-        <button>Log in</button>
-        </form>
-        <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            {/*put router link here, må se på denne når alt skal sys sammen*/} 
-                            <a href="#">Sign Up</a>
-                        </span>
-                    </p>
-    </section>
-    )}
-    </>
+              <section>
+                {/* <p ref={errRef} className={errMsg ? "errmsg" :
+                "offscreen"} aria-live="assertive">{errMsg}</p> */}
+                <h1>Log in</h1>
+                <form h>
+                  <label htmlFor="username">Username:</label>
+                  <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => checkUsername(e.target.value)}
+                    value={username}
+                    required />
+
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    type="password"
+                    id="password"
+                    onChange={(e) => axios.post()}
+                    value={password}
+                    required />
+                  <button>Log in</button>
+                </form>
+                <p>
+                  Need an Account?<br />
+                  <span className="line">
+                    {/*put router link here, må se på denne når alt skal sys sammen*/}
+                    <a href="#">Sign Up</a>
+                  </span>
+                </p>
+              </section>
+             
+
+        )}
+         </div>
+              </div>
+      </></>
   )
 
     }
