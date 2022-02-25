@@ -2,9 +2,10 @@ package backend.friendtrip.core;
 
 
 
-import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
   
   boolean existsByuserName(String userName);
