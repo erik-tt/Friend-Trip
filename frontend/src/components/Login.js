@@ -1,8 +1,8 @@
 
 import {useRef, useState, useEffect, useContext} from 'react';
-import axios from './api/axios';
+import axios from "axios";
 
-const [userNameLog, passwordLog] = useSState('');
+//const [userNameLog, passwordLog] = useState('');
 
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
    
 
 
-  }
+  
 
   return (
     <>
@@ -44,8 +44,8 @@ const Login = () => {
     ) : (
       
     <section>
-      <p ref={errRef} className={errMsg ? "errmsg" : 
-      "offscreen"} aria-live="assertive">{errMsg}</p>
+      {/* <p ref={errRef} className={errMsg ? "errmsg" : 
+      "offscreen"} aria-live="assertive">{errMsg}</p> */}
       <h1>Log in</h1>
       <form h >
         <label htmlFor="username">Username:</label>
@@ -81,7 +81,7 @@ const Login = () => {
     </>
   )
 
-
+    }
 
  
 export default Login;
