@@ -5,7 +5,7 @@ import axios from "axios";
 //Code used inspired by https://www.youtube.com/watch?v=brcHK3P6ChQ (sign up page tutorial)
  
 const usernameRegex = /^[a-zA-ZÆØÅæøå0-9_-]{3,30}$/;
-const passwordRegex = /^[a-zA-ZÆØÅæøå0-9_-]{8,30}$/;
+const passwordRegex = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
 const SignUp = () => {
   const userRef = useRef();
@@ -59,7 +59,7 @@ const SignUp = () => {
       const response = await axios.post("http://localhost:8080/api/users", 
       JSON.stringify({username, password, admin}),
       {
-        headers: {"Access-Control-Allow-Origin": "*", 'Content-Type' : 'application/json'},
+        headers: {'Content-Type' : 'application/json'},
         withCredentials: true
       }
     );
