@@ -11,8 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class FriendtripApplication{
    public static void main(String[] args) {
         SpringApplication.run(FriendtripApplication.class, args);
-        FriendtripController controller = new FriendtripController();
-        System.out.println(controller.getUsers()); 
     }
     
     @Bean
