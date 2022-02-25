@@ -1,5 +1,6 @@
 package backend.friendtrip.core;
 
+/* https://gist.github.com/zachowdhury/aa7aa4bba469e199ed36458a24c33a96 Code from github to fix CORS issues */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
