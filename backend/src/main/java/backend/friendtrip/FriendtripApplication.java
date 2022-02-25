@@ -13,12 +13,13 @@ public class FriendtripApplication{
         SpringApplication.run(FriendtripApplication.class, args);
         
     }
+    
     @Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/users-javaconfig").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/users").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}

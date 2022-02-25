@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 
@@ -17,9 +16,6 @@ public class User {
     private String username;
     private String password;
     private boolean admin;
-
-    @Autowired
-    private UserRepository repository;
 
     
 

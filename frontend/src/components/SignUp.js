@@ -26,6 +26,8 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
+  const admin = false;
+
   useEffect(() => {
     userRef.current.focus();
   }, [])
@@ -54,10 +56,10 @@ const SignUp = () => {
     e.preventDefault();
 
     try{
-      const response = await axios.post("http://localhost8080/users", 
-      JSON.stringify({username: userName, password}),
+      const response = await axios.post("http://localhost:8080/api/users", 
+      JSON.stringify({username, password, admin}),
       {
-        headers: {'Content-Type' : 'application/json'},
+        headers: {"Access-Control-Allow-Origin": "*", 'Content-Type' : 'application/json'},
         withCredentials: true
       }
     );
