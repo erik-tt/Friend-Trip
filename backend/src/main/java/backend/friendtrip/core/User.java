@@ -14,7 +14,6 @@ public class User {
     
    
     private @Id @GeneratedValue Long id;
-    private String email;
     private String username;
     private String password;
     private boolean admin;
@@ -31,8 +30,7 @@ public class User {
      * @param username user name as a string
      * @param password the password of a string
      */
-    public User(String email, String username, String password) {
-        setEmail(email);
+    public User(String username, String password) {
         setUsername(username);
         setPassword(password);
         this.admin = false;
@@ -46,7 +44,6 @@ public class User {
 		if (o == null || getClass() != o.getClass()) return false;
 		User user = (User) o;
         return Objects.equals(id, user.id) &&
-            Objects.equals(email, user.email) &&
 			Objects.equals(username, user.username) &&
             Objects.equals(password, user.password) &&
             Objects.equals(admin, user.admin);
@@ -65,11 +62,7 @@ public class User {
 		this.id = id;
     }
     
-    /**
-     * Sets a new password
-     * @param email The password as a string. 
-     * @throws IllegalArgumentException 
-     */
+   /*  
     private void setEmail(String email) {
         this.email = email;
         if (email.matches("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")){
@@ -79,7 +72,7 @@ public class User {
                 "This email is not valid");
         }
     }
-    
+     */
     
     /**
      * Sets the user name of a user.
@@ -137,13 +130,6 @@ public class User {
         this.admin = admin;
     }
 
-    /**
-     * gets email
-     * @return email
-     */
-    public String getEmail() {
-        return email;
-    }
 
     /**
      * gets username
@@ -173,7 +159,6 @@ public class User {
 	public String toString() {
 		return "User{" +
             "id=" + id +
-            ", username='" + email + '\'' +
 			", username='" + username + '\'' +
             ", password='" + password + '\'' +
             ", admin=" + admin + '\'' +
