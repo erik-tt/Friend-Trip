@@ -8,16 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Logo from './files/Header1.png';
- 
 
-/////////////////////////
-//i fleire eksempel har dei en sånn en på toppen (: idk
-export default class Home extends React.Component{
-  state = {
-    loading: true
-  }; 
-  
-}
+// import { Dropdown } from 'react-bootstrap';
+ 
 
 function Home(props) {
  
@@ -25,16 +18,6 @@ function Home(props) {
   const handleLogout = () => {    
     props.history.push('/Login.js');
   }
-
-  ////
-  const url = "http://localhost:8080/api"; 
-  const response = await fetch(url); 
-  //const data = await.response.json(); 
-
-
-
-
-  /////////////////////////
 
   //noke med design
   const useStyles = makeStyles({
@@ -44,9 +27,8 @@ function Home(props) {
   });
 
   const classes = useStyles();
- 
   
-  //skal hente data
+  //skal hente data i steden for å create
   function createData(name, difficulty, length) {
     return { name, difficulty, length };
   }
@@ -60,21 +42,31 @@ function Home(props) {
 
   return (
     <><div>
-      <img src={Logo} />
+      <img src={Logo}/>
+    </div>
+
+    
+
+    <div>
+    <select>
+      <option value="profil">Min profil</option>
+    </select>
+    </div><br/>
+
+    <div>
+      Oversikt over turer:<br/><br/>
     </div>
     <div>
-      Welcome User!!<br /><br />
-      <input type="button" onClick={handleLogout} value="Logout" />
-    </div><div>
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="table">
+          <Table className={classes.table} aria-label="table">   
             <TableHead>
               <TableRow>
-                <TableCell>Turer</TableCell>
+                <TableCell>Navn</TableCell>
+                <TableCell align="right">Beskrivelse</TableCell>
+                <TableCell align="right">Ansvarlig</TableCell>
                 <TableCell align="right">Vanskelighetsgrad</TableCell>
                 <TableCell align="right">Lengde&nbsp;(km)</TableCell>
                 <TableCell align="right">Medlemmer</TableCell>
-                <TableCell align="right">Ansvarlig</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -92,7 +84,8 @@ function Home(props) {
             </TableBody>
           </Table>
         </TableContainer>
-      </div></>   )
+      </div> <br/>
+      <div><input type="button" onClick={handleLogout} value="Logg ut" /></div></>   )
 
 };   
  
