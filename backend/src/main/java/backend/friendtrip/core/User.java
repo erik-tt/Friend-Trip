@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.Objects;
 
 @Entity
