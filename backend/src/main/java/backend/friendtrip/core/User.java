@@ -3,27 +3,34 @@ package backend.friendtrip.core;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+
 import java.util.Objects;
 
 @Entity
-/* @Table(name = "user") */
 public class User {
+    
     
    
     private @Id @GeneratedValue Long id;
-    private String userName;
+    private String username;
     private String password;
+    private boolean admin;
+
+    
 
     //Bio for future extension.
     /**
      * Constructer of the user class
-     * @param userName user name as a string
+     * @param username user name as a string
      * @param password the password of a string
      */
-    public User(String userName, String password) {
-        setUserName(userName);
+    public User(String username, String password) {
+        setUsername(username);
         setPassword(password);
+        this.admin = false;
     }
+    
     private User(){}
 
     @Override
@@ -31,14 +38,15 @@ public class User {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		User user = (User) o;
-		return Objects.equals(id, user.id) &&
-			Objects.equals(userName, user.userName) &&
-			Objects.equals(password, user.password);
+        return Objects.equals(id, user.id) &&
+			Objects.equals(username, user.username) &&
+            Objects.equals(password, user.password) &&
+            Objects.equals(admin, user.admin);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, userName, password);
+		return Objects.hash(id, username, password);
 	}
 
 	public Long getId() {
@@ -47,25 +55,36 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+    }
     
+   /*  
+    private void setEmail(String email) {
+        this.email = email;
+        if (email.matches("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")){
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException(
+                "This email is not valid");
+        }
+    }
+     */
     
     /**
      * Sets the user name of a user.
-     * @param userName the user name of a user
+     * @param username the user name of a user
      * @throws IllegalArgumentException
      */
-    public void setUserName(String userName) throws IllegalArgumentException {
+    public void setUsername(String username) throws IllegalArgumentException {
         
         //Add functionality for distinct users
-        if (userName.matches("^[a-zA-Z0-9ÆØÅæøå_-]*$") && (userName != null) 
-        && (!userName.equals("")) && (userName.length() < 30)) {
+        if (username.matches("^[a-zA-Z0-9ÆØÅæøå_-]*$") && (username != null) 
+        && (!username.equals("")) && (username.length() < 30)) {
 
-            this.userName = userName;
+            this.username = username;
         }
         else {
             throw new IllegalArgumentException(
-                "The user name must consist of letters or numbers and cannot be longer than 30 characters");
+                "The username must consist of letters or numbers and cannot be longer than 30 characters");
         }
        
         
@@ -98,11 +117,21 @@ public class User {
     }
 
     /**
-     * gets username
-     * @return userName
+     * Sets admin to true or false
+     * @param admin Admin paramater as boolean 
+     * @throws IllegalArgumentException 
      */
-    public String getUserName() {
-        return userName;
+    public void setAdmin(Boolean admin){
+        this.admin = admin;
+    }
+
+
+    /**
+     * gets username
+     * @return username
+     */
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -113,12 +142,21 @@ public class User {
         return password;
     }
 
+    /**
+     * gets admin
+     * @return admin
+     */
+    public Boolean getAdmin() {
+        return admin;
+    }
+
     @Override
 	public String toString() {
 		return "User{" +
-			"id=" + id +
-			", firstName='" + userName + '\'' +
-			", lastName='" + password + '\'' +
+            "id=" + id +
+			", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", admin=" + admin + '\'' +
 			'}';
 	}
 }
