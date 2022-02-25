@@ -1,21 +1,16 @@
 package backend.friendtrip.core;
 
-import java.beans.Transient;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import backend.friendtrip.core.User;
-
-
 public class UserTest {
 
-    private final String userName = "Erik_Torvbråten1";
+    private final String username = "Erik_Torvbråten1";
     private final String password = "Hund2022!";
 
     private User genUser() {
 
-        User user = new User(userName, password);
+        User user = new User(username, password);
 
         return user;
     } 
@@ -23,23 +18,23 @@ public class UserTest {
     @Test
     public void testConstructor() {
 
-        Assertions.assertEquals(userName, genUser().getUserName());
+        Assertions.assertEquals(username, genUser().getUsername());
         Assertions.assertEquals(password, genUser().getPassword());
     }
 
     @Test
-    public void testIllegalUserName() {
+    public void testIllegalUsername() {
 
-        String illegalUserName = "Marcus Fuglestad";
-        String illegalUserName2 = "";
-        String illegalUserName3 = "Usernamethatislongerthanalotofcharacterswhoevenhasthisasausername";
+        String illegalUsername = "Marcus Fuglestad";
+        String illegalUsername2 = "";
+        String illegalUsername3 = "Usernamethatislongerthanalotofcharacterswhoevenhasthisasausername";
 
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUserName(illegalUserName));
+        -> genUser().setUsername(illegalUsername));
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUserName(illegalUserName2));
+        -> genUser().setUsername(illegalUsername2));
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUserName(illegalUserName3));
+        -> genUser().setUsername(illegalUsername3));
     }
 
     @Test
