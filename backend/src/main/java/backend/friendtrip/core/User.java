@@ -14,8 +14,7 @@ import java.util.regex.*;
 @Entity
 /* @Table(name = "user") */
 public class User {
-    @Autowired
-    UserRepository repo;
+    
     
     private @Id @GeneratedValue Long id;
     private String userName;
@@ -31,7 +30,7 @@ public class User {
         setUserName(userName);
         setPassword(password);
     }
-    private User(){} //neccessary for autowired to work
+    protected User(){} //neccessary for autowired to work
 
     @Override
 	public boolean equals(Object o) {
@@ -66,7 +65,7 @@ public class User {
         
         //Add functionality for distinct users
         if (userName.matches("^[a-zA-Z0-9ÆØÅæøå_-]*$") && (userName != null) 
-        && (!userName.equals("")) && (userName.length() < 30) && !repo.existsByuserName(userName)) {
+        && (!userName.equals("")) && (userName.length() < 30))  {
 
             this.userName = userName;
         }
