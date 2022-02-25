@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRef, useState, useEffect} from "react";
+import axios from "axios";
 
 //Code used inspired by https://www.youtube.com/watch?v=brcHK3P6ChQ (sign up page tutorial)
  
@@ -51,8 +52,22 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password);
+
+    try{
+      const response = await axios.post("http://localhost8080/users", 
+      JSON.stringify({username: userName, password}),
+      {
+        headers: {'Content-Type' : 'application/json'},
+        withCredentials: true
+      }
+    );
+    console.log(response.data);
     setSuccess(true);
+
+    }catch (exception) {
+
+
+    }
   }
 
   return (
