@@ -16,7 +16,7 @@ function Home(props) {
  
   // handle click event of logout button
   const handleLogout = () => {    
-    props.history.push('/Login');
+    props.history.push('/');
   }
 
   //noke med design

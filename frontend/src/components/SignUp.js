@@ -108,7 +108,7 @@ const SignUp = () => {
                 onBlur={() => setUsernameFocus(false)}>
         </input>
         <p id="uidnote" className={userNameFocus && username && !validName ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Too short
         </p>
         <label htmlFor="password">
           Password:
@@ -124,7 +124,7 @@ const SignUp = () => {
                 onBlur={() => setPasswordFocus(false)}>
         </input>
         <p id="passwordnote" className={passwordFocus && password && !validPassword ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Weak password
         </p>
         <label htmlFor="confirm">
           Re-Enter Password:
@@ -140,7 +140,7 @@ const SignUp = () => {
                 onBlur={() => setMatchFocus(false)}>
         </input>
         <p id="matchidnote" className={matchFocus && matchPassword && !validMatch ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Does not match
         </p>
         <button disabled={!validName || !validPassword || !validMatch ? true : false}>
           Sign Up!

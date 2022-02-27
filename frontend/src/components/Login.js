@@ -2,11 +2,11 @@
 import {useRef, useState, useEffect, useContext} from 'react';
 import axios from "axios";
 import Logo from './files/Header2.png';
-import Home from './components/Home';
-import SignUp from './components/SignUp';
+
 
 //const [userNameLog, passwordLog] = useState('');
 
+//https://www.youtube.com/watch?v=X3qyxo_UTR4&t=1582s code inspired by this tutorial
 
 const Login = () => {
   
@@ -54,14 +54,14 @@ const Login = () => {
   
 
   return (
-    <><div class="split left">
-        <div class="centered">
+    <><div className="split left">
+        <div className="centered">
           <img height={"400px"} src={Logo} />
         </div>
       </div>
         <>
-        <div class="split right">
-            <div class="centered">
+        <div className="split right">
+            <div className="centered">
         {success ? (
           
               <section>
@@ -78,14 +78,14 @@ const Login = () => {
                 {/* <p ref={errRef} className={errMsg ? "errmsg" :
                 "offscreen"} aria-live="assertive">{errMsg}</p> */}
                 <h1>Log in</h1>
-                <form h>
+                <form onSubmit={handleSubmit}>
                   <label htmlFor="username">Username:</label>
                   <input
                     type="text"
                     id="username"
                     ref={userRef}
                     autoComplete="off"
-                    onChange={(e) => checkUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                     value={username}
                     required />
 
@@ -93,7 +93,7 @@ const Login = () => {
                   <input
                     type="password"
                     id="password"
-                    onChange={(e) => axios.post()}
+                    onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required />
                   <button>Log in</button>
@@ -101,8 +101,7 @@ const Login = () => {
                 <p>
                   Need an Account?<br />
                   <span className="line">
-                    {/*put router link here, må se på denne når alt skal sys sammen*/}
-                    <a href="#">Sign Up</a>
+                    <a href="/SignUp">Sign Up</a>
                   </span>
                 </p>
               </section>
