@@ -13,24 +13,43 @@ const Login = () => {
   const userRef= useRef();
   const errRef = useRef();
 
-  const [username, checkUsername] = useState('');
-  const [password, checkPassword] = useState('');
- 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
   
   useEffect(() => {
     userRef.current.focus();
-  },
-  [])
+  },[])
 
+  useEffect(() => {
+   setErrorMessage('');
+  },[username, password])
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    /*try{
+      const response = await axios.post("http://localhost:8080/api/login", 
+      JSON.stringify({username, password}),
+      {
+        headers: {'Content-Type' : 'application/json'},
+        withCredentials: true
+      }
+    );
+    console.log(response.data);
+    setSuccess(true);
+
+    }catch (exception) {
+    */
+    setUsername('');
+    setPassword('');
+    setSuccess(true);
+    
+  }
    
         
-    //setUsername('');
-    //setPassword('');
-    //setSuccess(true);
-    
-   
-
+ 
 
   
 
@@ -49,7 +68,7 @@ const Login = () => {
                 <h1>Welcome to Friendrip!</h1>
                 <br />
                 <p>
-                  <a href="#">Go to Home</a>
+                  <a href="/Home">Go to Home</a>
                 </p>
               </section>
             

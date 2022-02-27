@@ -76,13 +76,17 @@ const SignUp = () => {
     <>
     {success ? (
       <section>
-        <h1>Success</h1>
+        <h1>Welcome to FriendTrip</h1>
         <p>
-          
+        <br />
+          <span className="line">
+                 <a href="/">Go to log in</a>
+          </span>
+
         </p>
       </section>
     ) : (
-    <div>
+    <section>
       <p ref={errRef} className={errorMsg ? "errmsg" :"offscreen"} aria-live="assertive">{errorMsg}</p>
       <h1>
         Register
@@ -142,8 +146,13 @@ const SignUp = () => {
           Sign Up!
         </button>
       </form>
-      <p>Already registrered?</p>
-    </div>
+      <p>
+          Already have an account?<br />
+          <span className="line">
+                 <a href="/">Log in</a>
+          </span>
+      </p>
+    </section>
   )}
   </>
   );
