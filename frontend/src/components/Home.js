@@ -29,15 +29,15 @@ function Home(props) {
   const classes = useStyles();
   
   //skal hente data i steden for å create
-  function createData(name, difficulty, length) {
-    return { name, difficulty, length };
+  function createData(name, description, owner, difficulty, length, members) {
+    return { name, description, owner, difficulty, length, members };
   }
   
   //verdier, men vi skal hente data i steden for å create data
   const rows = [
-    createData('Blåfjell', 'rød', 6),
-    createData('Simosete', 'blå', 4),
-    createData('Molden', 'svart', 8),
+    createData('Blåfjell', 'Telttur', 'Philip', 'red', 6, 6),
+    createData('Simosete', 'Skitur', 'Erik', 'blue', 4, 2),
+    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15)
   ];
 
   return (
@@ -49,24 +49,24 @@ function Home(props) {
 
     <div>
     <select>
-      <option value="profil">Min profil</option>
+      <option value="profil">My profile</option>
     </select>
     </div><br/>
 
     <div>
-      Oversikt over turer:<br/><br/>
+      Trips:<br/><br/>
     </div>
     <div>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="table">   
             <TableHead>
               <TableRow>
-                <TableCell>Navn</TableCell>
-                <TableCell align="right">Beskrivelse</TableCell>
-                <TableCell align="right">Ansvarlig</TableCell>
-                <TableCell align="right">Vanskelighetsgrad</TableCell>
-                <TableCell align="right">Lengde&nbsp;(km)</TableCell>
-                <TableCell align="right">Medlemmer</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell align="left">Description</TableCell>
+                <TableCell align="left">Owner</TableCell>
+                <TableCell align="left">Difficulty</TableCell>
+                <TableCell align="left">Length&nbsp;(km)</TableCell>
+                <TableCell align="left">Members</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -75,17 +75,18 @@ function Home(props) {
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell align="right">{row.vanskelighetsgrad}</TableCell>
-                  <TableCell align="right">{row.lengde}</TableCell>
-                  <TableCell align="right">{row.medlemmer}</TableCell>
-                  <TableCell align="right">{row.ansvarlig}</TableCell>
+                  <TableCell align="left">{row.description}</TableCell>
+                  <TableCell align="left">{row.owner}</TableCell>
+                  <TableCell align="left">{row.difficulty}</TableCell>
+                  <TableCell align="left">{row.length}</TableCell>
+                  <TableCell align="left">{row.members}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </div> <br/>
-      <div><input type="button" onClick={handleLogout} value="Logg ut" /></div></>   )
+      <div><input type="button" onClick={handleLogout} value="Sign out" /></div></>   )
 
 };   
  
