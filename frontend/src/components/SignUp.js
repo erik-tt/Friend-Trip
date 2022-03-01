@@ -76,13 +76,17 @@ const SignUp = () => {
     <>
     {success ? (
       <section>
-        <h1>Success</h1>
+        <h1>Welcome to FriendTrip</h1>
         <p>
-          
+        <br />
+          <span className="line">
+                 <a href="/">Go to log in</a>
+          </span>
+
         </p>
       </section>
     ) : (
-    <div>
+    <section>
       <p ref={errRef} className={errorMsg ? "errmsg" :"offscreen"} aria-live="assertive">{errorMsg}</p>
       <h1>
         Register
@@ -104,7 +108,7 @@ const SignUp = () => {
                 onBlur={() => setUsernameFocus(false)}>
         </input>
         <p id="uidnote" className={userNameFocus && username && !validName ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Too short
         </p>
         <label htmlFor="password">
           Password:
@@ -120,7 +124,7 @@ const SignUp = () => {
                 onBlur={() => setPasswordFocus(false)}>
         </input>
         <p id="passwordnote" className={passwordFocus && password && !validPassword ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Weak password
         </p>
         <label htmlFor="confirm">
           Re-Enter Password:
@@ -136,14 +140,19 @@ const SignUp = () => {
                 onBlur={() => setMatchFocus(false)}>
         </input>
         <p id="matchidnote" className={matchFocus && matchPassword && !validMatch ? "instructions" : "offscreen"}>
-          BlaBLABla
+          Does not match
         </p>
         <button disabled={!validName || !validPassword || !validMatch ? true : false}>
           Sign Up!
         </button>
       </form>
-      <p>Already registrered?</p>
-    </div>
+      <p>
+          Already have an account?<br />
+          <span className="line">
+                 <a href="/">Log in</a>
+          </span>
+      </p>
+    </section>
   )}
   </>
   );
