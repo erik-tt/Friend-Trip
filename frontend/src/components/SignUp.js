@@ -108,7 +108,8 @@ const SignUp = () => {
                 onBlur={() => setUsernameFocus(false)}>
         </input>
         <p id="uidnote" className={userNameFocus && username && !validName ? "instructions" : "offscreen"}>
-          Too short
+          Invalid username: Username must be between 3-30 characters containing only letters, numbers, _ or -
+
         </p>
         <label htmlFor="password">
           Password:
