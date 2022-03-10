@@ -26,5 +26,9 @@ public class DatabaseLoader implements CommandLineRunner {
 			admin.setAdmin(true);
 			this.userRepository.save(admin);
 		}
+		User testUser = new User("tester", "1234-Abcd");
+		this.userRepository.save(testUser);
+		Trip test = new Trip("Test", "Testdescription", testUser, 2 );
+		this.tripRepository.save(test);
 	}
 }
