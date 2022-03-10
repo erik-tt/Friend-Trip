@@ -12,7 +12,7 @@ public class Trip {
     private String title;
     private String description;
     private int difficulty;
-    
+
     @OneToOne private final User owner;
 
     /**
@@ -41,8 +41,11 @@ public class Trip {
             this.title = title;
         }
         else{
+            if(title == null){
+                throw new NullPointerException("invalid title. tittle cannot be null");
+            }
             throw new IllegalArgumentException(
-                "invalid description, must consist of letters and numbers and cannot exceed 30 characters");
+                "invalid title, must consist of letters and numbers and cannot exceed 30 characters");
         }
     }
 
