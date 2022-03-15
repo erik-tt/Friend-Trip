@@ -1,13 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+
+
 import Logo from './files/Header1.png';
+import Avatar from "./files/avatar.png";
+import Trip from "./Trip.js"
+
+
+
 
 // import { Dropdown } from 'react-bootstrap';
  
@@ -33,11 +34,14 @@ function Home(props) {
     return { name, description, owner, difficulty, length, members };
   }
   
+  
+  
   //verdier, men vi skal hente data i steden for å create data
   const rows = [
     createData('Blåfjell', 'Telttur', 'Philip', 'red', 6, 6),
     createData('Simosete', 'Skitur', 'Erik', 'blue', 4, 2),
-    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15)
+    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15),
+    createData('Estenstadmarka','hengekøyetur','Ole','green',4,7)
   ];
 
   return (
@@ -48,45 +52,27 @@ function Home(props) {
     
 
     <div>
-    <select>
-      <option value="profil">My profile</option>
-    </select>
+    <img src={Avatar}  height={50}></img>
     </div><br/>
 
     <div>
       Trips:<br/><br/>
     </div>
-    <div>
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="table">   
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="left">Description</TableCell>
-                <TableCell align="left">Owner</TableCell>
-                <TableCell align="left">Difficulty</TableCell>
-                <TableCell align="left">Length&nbsp;(km)</TableCell>
-                <TableCell align="left">Members</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.description}</TableCell>
-                  <TableCell align="left">{row.owner}</TableCell>
-                  <TableCell align="left">{row.difficulty}</TableCell>
-                  <TableCell align="left">{row.length}</TableCell>
-                  <TableCell align="left">{row.members}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div> <br/>
+    <div id="grid" sx={{
+      
+    }}>
+      <Grid container spacing={1}>
+      {rows.map((row) => (
+        <Grid item xs={4}>
+          {Trip(row)}
+        </Grid>
+      
+      ))}
+
+      </Grid>
+      </div>
       <div><input type="button" onClick={handleLogout} value="Sign out" /></div></>   )
+      
 
 };   
  
