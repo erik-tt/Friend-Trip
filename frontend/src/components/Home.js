@@ -1,7 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
-
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Placeholder from "./files/placeholderPost.jpg";
+import Backdrop from '@mui/material/Backdrop';
 
 import Logo from './files/Header1.png';
 import Avatar from "./files/avatar.png";
@@ -19,6 +26,18 @@ function Home(props) {
   const handleLogout = () => {    
     props.history.push('/');
   }
+
+  const handleCreateTrip = () => {
+    props.history.push('/Home/TripRegistration')
+  }
+
+  const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+      setOpen(false);
+    };
+  const handleToggle = () => {
+    setOpen(!open);
+  }; 
 
   //noke med design
   const useStyles = makeStyles({
@@ -41,7 +60,7 @@ function Home(props) {
     createData('Blåfjell', 'Telttur', 'Philip', 'red', 6, 6),
     createData('Simosete', 'Skitur', 'Erik', 'blue', 4, 2),
     createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15),
-    createData('Estenstadmarka','hengekøyetur','Ole','green',4,7)
+    createData('Estenstadmarka','hengekøyetur','Ole','green',4,7),
   ];
 
   return (
@@ -54,7 +73,26 @@ function Home(props) {
     <div>
     <img src={Avatar}  height={50}></img>
     </div><br/>
-
+    <Button onClick={handleToggle}>CREATE NEW TRIP</Button>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            
+        >
+            <Card sx={{ maxWidth: 600 }}>
+                <Button onClick={handleToggle} variant="text">X</Button>
+               
+                <CardContent>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+        </input>
+                </CardContent>
+                </Card>
+            </Backdrop>
     <div>
       Trips:<br/><br/>
     </div>
