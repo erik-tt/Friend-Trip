@@ -32,7 +32,7 @@ public class User {
         this.admin = false;
     }
     
-    private User(){}
+    protected User(){}
 
     @Override
 	public boolean equals(Object o) {
