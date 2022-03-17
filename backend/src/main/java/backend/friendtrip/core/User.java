@@ -25,6 +25,7 @@ public class User {
      * Constructer of the user class
      * @param username user name as a string
      * @param password the password of a string
+     * @param role role as a string
      */
     public User(String username, String password, String role) {
         setUsername(username);

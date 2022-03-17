@@ -11,8 +11,8 @@ public class CommercialUser extends User{
     private @Id @GeneratedValue Long id;
     private String companyName;
     
-    public CommercialUser(String userName, String password, String companyName) {
-        super(userName, password);
+    public CommercialUser(String username, String password, String role, String companyName) {
+        super(username, password, role);
         validateCompanyName(companyName);
     }
 

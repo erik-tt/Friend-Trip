@@ -31,7 +31,7 @@ public class Trip {
         this.owner = owner;
     }
 
-    public Trip(){}
+    // public Trip(){}
 
     @Override
 	public boolean equals(Object o) {
