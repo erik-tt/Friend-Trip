@@ -27,6 +27,7 @@ const SignUp = () => {
   const [success, setSuccess] = useState(false);
 
   const role = "USER";
+  const bio ="";
 
   useEffect(() => {
     userRef.current.focus();
@@ -57,7 +58,7 @@ const SignUp = () => {
 
     try{
       const response = await axios.post("http://localhost:8080/api/users", 
-      JSON.stringify({username, password, role}),
+      JSON.stringify({username, password, role, bio}),
       {
         headers: {'Content-Type' : 'application/json'},
         withCredentials: true
