@@ -9,9 +9,30 @@ import { CardActionArea } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import Placeholder from "./files/placeholderPost.jpg";
+/* 
+@OneToOne private final User owner;
+private String title;
+private String description;
+private int difficulty;
 
 
-function Trip(props){
+
+ */
+
+
+const Trip = ({ }) => {
+
+    useEffect(()=>{
+        getData();
+      }, [])
+    
+      async function getData() {
+        await axios.get("http://localhost:8080/api/trips")
+        .then((response) => {
+          setData(response.data);
+        })
+      }
+
     const [open, setOpen] = React.useState(false);
     const handleClose = () => {
       setOpen(false);

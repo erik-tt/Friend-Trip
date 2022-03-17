@@ -84,6 +84,8 @@ function Home(props) {
   }
 
   
+  /* 
+  
   //15.03.22
   const  getAllTrips = () => {
     const[trips, getTrips] = useState(''); 
@@ -100,10 +102,11 @@ function Home(props) {
     })
     .catch(error => console.error(`Error: ${error}`));
    
-  }
-
-
+  } 
   
+  */
+
+
   
   
   //verdier, men vi skal hente data i steden for å create data
@@ -120,7 +123,9 @@ function Home(props) {
     </div>
     <h3>Hello {username}</h3>
 
-    <Trip trips={trips}/>
+    {/* 
+    <Trip trips={trips}/> 
+    */}
 
     <div>
     <img src={Avatar}  height={50}></img>
