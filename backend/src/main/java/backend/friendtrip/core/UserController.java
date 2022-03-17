@@ -20,6 +20,8 @@ class UserController {
   UserController(UserRepository repository) {
     this.repository = repository;
   }
+  
+
 
   @PostMapping("/api/login")
   ResponseEntity<String> token(@RequestBody User newUser) {
@@ -35,8 +37,23 @@ class UserController {
         }
     
       }
+  
+  @PutMapping("/users/{id}")
+  User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
     
-    
+    return repository.findById(id)
+      .map(user -> {
+        user.setUsername(newUser.getUsername());
+        user.setPassword(newUser.getPassword());
+        user.setRole(newUser.getRole());
+        user.setBio(newUser.getBio());
+        return repository.save(user);
+      })
+      .orElseGet(() -> {
+        return repository.save(newUser);
+      });
+  }
+ 
 /* 
   // Aggregate root
   // tag::get-aggregate-root[]

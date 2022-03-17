@@ -24,7 +24,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		if(!userRepository.existsByUsername("admin")){
-			User admin = new User("admin", "1234-Abcd", "ADMIN");
+			User admin = new User("admin", "1234-Abcd", "ADMIN", "Bio");
 			this.userRepository.save(admin);
 		}
 	}

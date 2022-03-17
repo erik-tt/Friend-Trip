@@ -17,6 +17,8 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String bio;
+
 
     
 
@@ -27,10 +29,11 @@ public class User {
      * @param password the password of a string
      * @param role role as a string
      */
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role, String bio) {
         setUsername(username);
         setPassword(password);
         setRole(role);
+        setBio(bio);
     }
     
     protected User(){}
@@ -91,6 +94,10 @@ public class User {
        
         
     }
+    public void setBio(String bio) {
+        this.bio=bio;
+
+    }
 
     /**
      * Sets a new password
@@ -150,6 +157,9 @@ public class User {
      */
     public String getRole() {
         return role;
+    }
+    public String getBio() {
+        return this.bio;
     }
 
     @Override
