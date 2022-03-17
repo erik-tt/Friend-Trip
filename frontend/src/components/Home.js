@@ -83,13 +83,22 @@ function Home(props) {
                 <Button onClick={handleToggle} variant="text">X</Button>
                
                 <CardContent>
+                <p>Name</p>
                 <input
                 type="text"
                 autoComplete="off"
                 required
                 aria-describedby="uidnote"
                >
-        </input>
+                </input>
+                <p>Description</p>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+                </input>
                 </CardContent>
                 </Card>
             </Backdrop>

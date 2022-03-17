@@ -22,12 +22,7 @@ function TripRegistration (props) {
         >
             <Card sx={{ maxWidth: 600 }}>
                 <Button onClick={handleToggle} variant="text">X</Button>
-                <CardMedia
-                    component="img"
-                    height="300"
-                    image={Placeholder}
-                    alt="soria moria" />
-               
+                
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {props.name}
