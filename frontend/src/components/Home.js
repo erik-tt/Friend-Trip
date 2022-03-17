@@ -82,6 +82,27 @@ function Home(props) {
   function createData(name, description, owner, difficulty, length, members) {
     return { name, description, owner, difficulty, length, members };
   }
+
+  
+  //15.03.22
+  const  getAllTrips = () => {
+    const[trips, getTrips] = useState(''); 
+
+    useEffect(() => {
+      getAllTrips();
+    }, []); 
+
+    axios.get(`$'http://localhost:8080/trips`)
+    .then((response) => {
+      const allTrips = response.data.trips.allTrips;
+      //adder data til state
+      getTrips(allTrips); 
+    })
+    .catch(error => console.error(`Error: ${error}`));
+   
+  }
+
+
   
   
   
@@ -99,7 +120,7 @@ function Home(props) {
     </div>
     <h3>Hello {username}</h3>
 
-    
+    <Trip trips={trips}/>
 
     <div>
     <img src={Avatar}  height={50}></img>
@@ -134,7 +155,7 @@ function Home(props) {
                 </Card>
             </Backdrop>
     <div>
-      Trips:<br/><br/>
+      Trips<br/><br/>
     </div>
     <div id="grid" sx={{
       
