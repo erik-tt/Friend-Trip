@@ -1,5 +1,6 @@
 
 import {useRef, useState, useEffect, useContext} from 'react';
+import PropTypes from 'prop-types';
 import axios from "axios";
 import Logo from './files/Header2.png';
 
@@ -8,14 +9,16 @@ import Logo from './files/Header2.png';
 
 //https://www.youtube.com/watch?v=X3qyxo_UTR4&t=1582s code inspired by this tutorial
 
-const Login = () => {
+
+
+const Login = ({ setToken }) => {
   
   const userRef= useRef();
   const errRef = useRef();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
   
   useEffect(() => {
@@ -23,29 +26,30 @@ const Login = () => {
   },[])
 
   useEffect(() => {
-   setErrorMessage('');
+   setErrorMsg('');
   },[username, password])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    /*try{
+    try{
       const response = await axios.post("http://localhost:8080/api/login", 
-      JSON.stringify({username, password}),
+        JSON.stringify({username, password}),
       {
         headers: {'Content-Type' : 'application/json'},
         withCredentials: true
       }
-    );
-    console.log(response.data);
+    ); 
+    setToken(response.data);
     setSuccess(true);
 
     }catch (exception) {
-    */
+   /*
     setUsername('');
     setPassword('');
     setSuccess(true);
-    
+    */
+    }
   }
    
         
@@ -54,6 +58,7 @@ const Login = () => {
   
 
   return (
+    <div className="login-wrapper">
     <><div className="split left">
         <div className="centered">
           <img height={"400px"} src={Logo} />
@@ -75,8 +80,8 @@ const Login = () => {
             ) : (
 
               <section>
-                {/* <p ref={errRef} className={errMsg ? "errmsg" :
-                "offscreen"} aria-live="assertive">{errMsg}</p> */}
+                { <p ref={errRef} className={errorMsg ? "errmsg" :
+                "offscreen"} aria-live="assertive">{errorMsg}</p> }
                 <h1>Log in</h1>
                 <form onSubmit={handleSubmit}>
                   <label htmlFor="username">Username:</label>
@@ -110,10 +115,16 @@ const Login = () => {
         )}
          </div>
               </div>
-      </></>
+              
+      </></></div>
   )
 
     }
+  
 
  
 export default Login;
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+}

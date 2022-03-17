@@ -13,7 +13,7 @@ public class FriendtripApplication{
         SpringApplication.run(FriendtripApplication.class, args);
     }
     
-    @Bean
+    /* @Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -21,5 +21,5 @@ public class FriendtripApplication{
 				registry.addMapping("/users").allowedOrigins("http://localhost:3000");
 			}
 		};
-	}
+	} */
 }

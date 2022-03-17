@@ -7,10 +7,11 @@ public class UserTest {
 
     private final String username = "Erik_Torvbråten1";
     private final String password = "Hund2022!";
+    private final String role = "USER";
 
     private User genUser() {
 
-        User user = new User(username, password);
+        User user = new User(username, password, role);
 
         return user;
     } 

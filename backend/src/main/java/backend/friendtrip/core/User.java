@@ -16,7 +16,7 @@ public class User {
     private @Id @GeneratedValue Long id;
     private String username;
     private String password;
-    private boolean admin;
+    private String role;
 
     
 
@@ -26,10 +26,10 @@ public class User {
      * @param username user name as a string
      * @param password the password of a string
      */
-    public User(String username, String password) {
+    public User(String username, String password, String role) {
         setUsername(username);
         setPassword(password);
-        this.admin = false;
+        setRole(role);
     }
     
     private User(){}
@@ -42,7 +42,7 @@ public class User {
         return Objects.equals(id, user.id) &&
 			Objects.equals(username, user.username) &&
             Objects.equals(password, user.password) &&
-            Objects.equals(admin, user.admin);
+            Objects.equals(role, user.role);
 	}
 
 	@Override
@@ -119,11 +119,11 @@ public class User {
 
     /**
      * Sets admin to true or false
-     * @param admin Admin paramater as boolean 
+     * @param role Admin paramater as boolean 
      * @throws IllegalArgumentException 
      */
-    public void setAdmin(Boolean admin){
-        this.admin = admin;
+    public void setRole(String role){
+        this.role = role;
     }
 
 
@@ -147,8 +147,8 @@ public class User {
      * gets admin
      * @return admin
      */
-    public Boolean getAdmin() {
-        return admin;
+    public String getRole() {
+        return role;
     }
 
     @Override
@@ -157,7 +157,7 @@ public class User {
             "id=" + id +
 			", username='" + username + '\'' +
             ", password='" + password + '\'' +
-            ", admin=" + admin + '\'' +
+            ", role=" + role + '\'' +
 			'}';
 	}
 }

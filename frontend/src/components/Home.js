@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,10 +9,40 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Logo from './files/Header1.png';
 
+import useToken from './useToken';
+import axios from "axios";
+
 // import { Dropdown } from 'react-bootstrap';
  
 
 function Home(props) {
+  const { token } = useToken();
+
+  const [data, setData] = useState();
+  const [username, setUsername] = useState();
+
+  const absToken = Math.abs(token);
+
+  useEffect(()=>{
+    getData();
+  }, [])
+
+  async function getData() {
+    await axios.get("http://localhost:8080/api/users/" + absToken)
+    .then((response) => {
+      setData(response.data);
+      setUsername(response.data.username)
+    })
+  }
+
+  
+  
+
+
+
+
+
+
  
   // handle click event of logout button
   const handleLogout = () => {    
@@ -41,9 +71,10 @@ function Home(props) {
   ];
 
   return (
-    <><div>
+    <h2><div>
       <img src={Logo}/>
     </div>
+    <h3>Hello {username}</h3>
 
     
 
@@ -86,7 +117,7 @@ function Home(props) {
           </Table>
         </TableContainer>
       </div> <br/>
-      <div><input type="button" onClick={handleLogout} value="Sign out" /></div></>   )
+      <div><input type="button" onClick={handleLogout} value="Sign out" /></div></h2>   )
 
 };   
  
