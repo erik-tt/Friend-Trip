@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Placeholder from "./files/placeholderPost.jpg";
+import Backdrop from '@mui/material/Backdrop';
+
 import Logo from './files/Header1.png';
+import Avatar from "./files/avatar.png";
+import Trip from "./Trip.js"
+
+
+
 
 import useToken from './useToken';
 import axios from "axios";
@@ -49,6 +57,18 @@ function Home(props) {
     props.history.push('/');
   }
 
+  const handleCreateTrip = () => {
+    props.history.push('/Home/TripRegistration')
+  }
+
+  const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+      setOpen(false);
+    };
+  const handleToggle = () => {
+    setOpen(!open);
+  }; 
+
   //noke med design
   const useStyles = makeStyles({
     table: {
@@ -63,11 +83,14 @@ function Home(props) {
     return { name, description, owner, difficulty, length, members };
   }
   
+  
+  
   //verdier, men vi skal hente data i steden for å create data
   const rows = [
     createData('Blåfjell', 'Telttur', 'Philip', 'red', 6, 6),
     createData('Simosete', 'Skitur', 'Erik', 'blue', 4, 2),
-    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15)
+    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15),
+    createData('Estenstadmarka','hengekøyetur','Ole','green',4,7),
   ];
 
   return (
@@ -79,45 +102,55 @@ function Home(props) {
     
 
     <div>
-    <select>
-      <option value="profil">My profile</option>
-    </select>
+    <img src={Avatar}  height={50}></img>
     </div><br/>
-
+    <Button onClick={handleToggle}>CREATE NEW TRIP</Button>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            
+        >
+            <Card sx={{ maxWidth: 600 }}>
+                <Button onClick={handleToggle} variant="text">X</Button>
+               
+                <CardContent>
+                <p>Name</p>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+                </input>
+                <p>Description</p>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+                </input>
+                </CardContent>
+                </Card>
+            </Backdrop>
     <div>
       Trips:<br/><br/>
     </div>
-    <div>
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="table">   
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="left">Description</TableCell>
-                <TableCell align="left">Owner</TableCell>
-                <TableCell align="left">Difficulty</TableCell>
-                <TableCell align="left">Length&nbsp;(km)</TableCell>
-                <TableCell align="left">Members</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.description}</TableCell>
-                  <TableCell align="left">{row.owner}</TableCell>
-                  <TableCell align="left">{row.difficulty}</TableCell>
-                  <TableCell align="left">{row.length}</TableCell>
-                  <TableCell align="left">{row.members}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div> <br/>
+    <div id="grid" sx={{
+      
+    }}>
+      <Grid container spacing={1}>
+      {rows.map((row) => (
+        <Grid item xs={4}>
+          {Trip(row)}
+        </Grid>
+      
+      ))}
+
+      </Grid>
+      </div>
       <div><input type="button" onClick={handleLogout} value="Sign out" /></div></h2>   )
+      
 
 };   
  

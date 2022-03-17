@@ -12,11 +12,13 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	private final UserRepository userRepository;
 	private final TripRepository tripRepository;
+	private final CommercialUserRepository cUserRepository;
 
 	@Autowired 
-	public DatabaseLoader(UserRepository repository1, TripRepository repository2) {
+	public DatabaseLoader(UserRepository repository1, TripRepository repository2, CommercialUserRepository repository3) {
 		this.userRepository = repository1;
 		this.tripRepository = repository2;
+		this.cUserRepository = repository3;
 	}
 
 	@Override

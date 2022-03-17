@@ -1,13 +1,18 @@
 package backend.friendtrip.core;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 @Entity
-public class CommercialUser {
+public class CommercialUser extends User{
 
+    private @Id @GeneratedValue Long id;
     private String companyName;
     
     public CommercialUser(String userName, String password, String companyName) {
+        super(userName, password);
         validateCompanyName(companyName);
     }
 
