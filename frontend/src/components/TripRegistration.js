@@ -16,20 +16,27 @@ import FormLabel from '@mui/material/FormLabel';
 
  
 function TripRegistration () {
+
     
     const [open, setOpen] = React.useState(false);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log(name);
+        console.log(description)
+        handleClose();
+    }
+    
     const handleClose = () => {
       setOpen(false);
     };
+    
     const handleToggle = () => {
       setOpen(!open);
     };
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        console.log(data.get('name'));
-    }
-    
     return (
         <>
         
@@ -50,6 +57,7 @@ function TripRegistration () {
             autoComplete="off"
             required
             aria-describedby="uidnote"
+            onChange = {(event) => setName(event.target.value)}
            >
 
             </input>
@@ -60,6 +68,7 @@ function TripRegistration () {
             autoComplete="off"
             required
             aria-describedby="uidnote"
+            onChange = {(event) => setDescription(event.target.value)}
            >
             </input>
 
