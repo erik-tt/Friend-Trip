@@ -32,7 +32,7 @@ public class User {
         setRole(role);
     }
     
-    private User(){}
+    protected User(){}
 
     @Override
 	public boolean equals(Object o) {

@@ -1,5 +1,7 @@
 package backend.friendtrip.core;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -12,7 +14,7 @@ public class Trip {
     private String title;
     private String description;
     private int difficulty;
-
+    
     @OneToOne private final User owner;
 
     /**
@@ -28,6 +30,25 @@ public class Trip {
         setDifficulty(difficulty);
         this.owner = owner;
     }
+
+    public Trip(){}
+
+    @Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Trip trip = (Trip) o;
+        return Objects.equals(id, trip.id) &&
+			Objects.equals(title, trip.title) &&
+            Objects.equals(description, trip.description) &&
+            Objects.equals(difficulty, trip.difficulty) &&
+            Objects.equals(owner, trip.owner);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, title, description, difficulty, owner);
+	}
 
     /**
      * Sets the title of a trip.
