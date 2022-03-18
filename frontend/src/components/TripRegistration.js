@@ -27,8 +27,17 @@ function TripRegistration () {
         event.preventDefault();
         console.log(name);
         console.log(description)
+        console.log(difficulty)
         handleClose();
     }
+
+    const [difficulty, setDifficulty] = useState('1');
+
+    const handleChange = (event) => {
+      setDifficulty(event.target.value);
+    };
+
+    
     
     const handleClose = () => {
       setOpen(false);
@@ -73,17 +82,19 @@ function TripRegistration () {
             </input>
 
             <FormControl>
-                <FormLabel >Skill level</FormLabel>
+                <FormLabel id="Skill">Skill level</FormLabel>
                 <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="1"
-                    id="skill"
-                    >
-                    <FormControlLabel value="1" control={<Radio />} label="Amateur" />
-                    <FormControlLabel value="2" control={<Radio />} label="Intermediate" />
-                    <FormControlLabel value="3" control={<Radio />} label="Pro" />
-                </RadioGroup>
+                 aria-labelledby="Skill-level"
+                name="Skill level"
+                value={difficulty}
+                onChange={handleChange}
+            >
+                <FormControlLabel value="1" control={<Radio />} label="Amateur" />
+                <FormControlLabel value="2" control={<Radio />} label="Intermediate" />
+                <FormControlLabel value="3" control={<Radio />} label="Pro" />
+              </RadioGroup>
             </FormControl>
+
             <button type="submit">Submit</button>
             </form>
             </CardContent>
