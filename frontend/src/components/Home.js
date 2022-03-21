@@ -28,14 +28,17 @@ function Home(props) {
 
   const [data, setData] = useState();
   const [username, setUsername] = useState();
+  const [tripCount, setTripCount] = useState();
+  const trips = [Trip(2), Trip(3), Trip(4)];
 
+ 
   const absToken = Math.abs(token);
 
   useEffect(()=>{
-    getData();
+    getUser();
   }, [])
 
-  async function getData() {
+  async function getUser() {
     await axios.get("http://localhost:8080/api/users/" + absToken)
     .then((response) => {
       setData(response.data);
@@ -43,14 +46,17 @@ function Home(props) {
     })
   }
 
+  useEffect(()=>{
+    getTrips();
+  }, [])
+
+  async function getTrips() {
+    await axios.get("http://localhost:8080/api/trips")
+    .then((response) => {
+      setTripCount(response.data.page.totalElements);
+    })
+  }
   
-  
-
-
-
-
-
-
  
   // handle click event of logout button
   const handleLogout = () => {    
@@ -77,55 +83,13 @@ function Home(props) {
   });
 
   const classes = useStyles();
-  
-  //skal hente data i steden for å create
-  function createData(name, description, owner, difficulty, length, members) {
-    return { name, description, owner, difficulty, length, members };
-  }
 
-  
-  /* 
-  
-  //15.03.22
-  const  getAllTrips = () => {
-    const[trips, getTrips] = useState(''); 
-
-    useEffect(() => {
-      getAllTrips();
-    }, []); 
-
-    axios.get(`$'http://localhost:8080/trips`)
-    .then((response) => {
-      const allTrips = response.data.trips.allTrips;
-      //adder data til state
-      getTrips(allTrips); 
-    })
-    .catch(error => console.error(`Error: ${error}`));
-   
-  } 
-  
-  */
-
-
-  
-  
-  //verdier, men vi skal hente data i steden for å create data
-  const rows = [
-    createData('Blåfjell', 'Telttur', 'Philip', 'red', 6, 6),
-    createData('Simosete', 'Skitur', 'Erik', 'blue', 4, 2),
-    createData('Molden', 'Topptur ', 'Andrea', 'black', 8, 15),
-    createData('Estenstadmarka','hengekøyetur','Ole','green',4,7),
-  ];
 
   return (
     <h2><div>
       <img src={Logo}/>
     </div>
     <h3>Hello {username}</h3>
-
-    {/* 
-    <Trip trips={trips}/> 
-    */}
 
     <div>
     <img src={Avatar}  height={50}></img>
@@ -165,19 +129,20 @@ function Home(props) {
     <div id="grid" sx={{
       
     }}>
-      <Grid container spacing={1}>
-      {rows.map((row) => (
-        <Grid item xs={4}>
-          {Trip(row)}
-        </Grid>
-      
-      ))}
+       
+    
+    <Grid container spacing={5}>
 
+    {trips.map((trip) =>
+          <Grid xs={4}>
+            {Trip(2)}
+          </Grid>
+        )}
       </Grid>
       </div>
+      
       <div><input type="button" onClick={handleLogout} value="Sign out" /></div></h2>   )
       
-
 };   
  
 export default Home;

@@ -15,7 +15,7 @@ public class Trip {
     private String description;
     private int difficulty;
     
-    @OneToOne private final User owner;
+    @OneToOne private User owner;
 
     /**
      * The constructor of a trip.
@@ -31,7 +31,7 @@ public class Trip {
         this.owner = owner;
     }
 
-    // public Trip(){}
+    public Trip(){}
 
     @Override
 	public boolean equals(Object o) {

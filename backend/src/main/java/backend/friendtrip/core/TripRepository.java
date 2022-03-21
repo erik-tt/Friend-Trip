@@ -4,12 +4,16 @@ package backend.friendtrip.core;
 
 
 
-import org.springframework.data.repository.CrudRepository;
 
-public interface TripRepository extends CrudRepository<Trip, Long> {
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
 
   
   boolean existsByTitle(String title);
   Trip findByTitle(String title);
+  List<Trip> findAll();
 
 }
