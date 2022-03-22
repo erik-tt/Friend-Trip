@@ -74,10 +74,13 @@ function Home(props) {
   ];
 
   return (
-    <h2><div>
+    <>
+   
+      <div>
       <img src={Logo}/>
-    </div>
-    <h3>Hello {username}</h3>    
+      </div>
+
+    <h2>Hello {username}</h2>    
 
     <TripRegistration>TripReg</TripRegistration>
 
@@ -101,7 +104,9 @@ function Home(props) {
 
       </Grid>
       </div>
-      <div><input type="button" onClick={handleLogout} value="Sign out" /></div></h2>   )
+      <div><input type="button" onClick={handleLogout} value="Sign out" /></div>
+      </>  
+      )
       
 
 };   

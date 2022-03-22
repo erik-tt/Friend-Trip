@@ -19,24 +19,40 @@ function TripRegistration () {
 
     
     const [open, setOpen] = React.useState(false);
-    const [name, setName] = useState('');
+    const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log(name);
-        console.log(description)
-        console.log(difficulty)
-        handleClose();
-    }
-
     const [difficulty, setDifficulty] = useState('1');
 
     const handleChange = (event) => {
       setDifficulty(event.target.value);
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        try{
+          let rawToken = sessionStorage.getItem("token");
+          let token = rawToken.match(/\d+/)[0] 
+
+          //It gets the token, but it wont store the user correctly
+          console.log(token)
+         
+          let link = ("http://localhost:8080/api/users/" + token)
+
+         const response = await axios.post("http://localhost:8080/api/trips", 
+          JSON.stringify({title, description, difficulty, link}),
+          {
+            headers: {'Content-Type' : 'application/json'},
+            withCredentials: true
+          }
+        );
+        console.log(response.data);
+
+        }catch (exception) {
+          console.log('error')
+    
+        }
+      }
     
     
     const handleClose = () => {
@@ -66,7 +82,7 @@ function TripRegistration () {
             autoComplete="off"
             required
             aria-describedby="uidnote"
-            onChange = {(event) => setName(event.target.value)}
+            onChange = {(event) => setTitle(event.target.value)}
            >
 
             </input>
