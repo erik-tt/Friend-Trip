@@ -75,10 +75,13 @@ function Home(props) {
 
 
   return (
-    <h2><div>
+    <>
+   
+      <div>
       <img src={Logo}/>
-    </div>
-    <h3>Hello {username}</h3>    
+      </div>
+
+    <h2>Hello {username}</h2>    
 
     <TripRegistration>TripReg</TripRegistration>
 
