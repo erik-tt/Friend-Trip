@@ -21,6 +21,7 @@ const Login = ({ setToken }) => {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
+  const [signUp, setSignUp] = useState(false);
   
   useEffect(() => {
     userRef.current.focus();
@@ -45,11 +46,7 @@ const Login = ({ setToken }) => {
     setSuccess(true);
 
     }catch (exception) {
-   /*
-    setUsername('');
-    setPassword('');
-    setSuccess(true);
-    */
+      console.log('error')
     }
   }
    
@@ -110,10 +107,9 @@ const Login = ({ setToken }) => {
                     <a href="/SignUp">Sign Up</a>
                   </span>
                 </p>
-              </section>
-             
-
+              </section>             
         )}
+        <SignUp>SignUp</SignUp>
          </div>
               </div>
               

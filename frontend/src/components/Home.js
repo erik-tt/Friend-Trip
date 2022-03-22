@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Placeholder from "./files/placeholderPost.jpg";
-import Backdrop from '@mui/material/Backdrop';
 import TripRegistration from "./TripRegistration.js"
 
 import Logo from './files/Header1.png';
 import Avatar from "./files/avatar.png";
 import Trip from "./Trip.js"
+
+import { Link } from 'react-router-dom'
 
 
 
@@ -58,11 +53,6 @@ function Home(props) {
     })
   }
   
- 
-  // handle click event of logout button
-  const handleLogout = () => {    
-    props.history.push('/');
-  }  
 
   //noke med design
   const useStyles = makeStyles({
@@ -107,7 +97,9 @@ function Home(props) {
       </Grid>
       </div>
       
-      <div><input type="button" onClick={handleLogout} value="Sign out" /></div>  
+      <Button variant="contained" onClick={() => sessionStorage.clear()}>
+        <Link to={'/login'} className="nav-link">Sign Out</Link>
+      </Button>
       </>)
       
 };   
