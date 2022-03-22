@@ -64,6 +64,10 @@ function Home(props) {
     props.history.push('/');
   }  
 
+  const handleGoToProfile = () => {    
+    props.history.push('/Profile');
+  }
+
   //noke med design
   const useStyles = makeStyles({
     table: {
@@ -89,6 +93,38 @@ function Home(props) {
     <img src={Avatar}  height={50}></img>
     </div><br/>
     
+    <Button>
+    <img src={Avatar} onClick={handleGoToProfile} height={50}></img>
+    </Button><br/>
+    <Button onClick={handleToggle}>CREATE NEW TRIP</Button>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            
+        >
+            <Card sx={{ maxWidth: 600 }}>
+                <Button onClick={handleToggle} variant="text">X</Button>
+               
+                <CardContent>
+                <p>Name</p>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+                </input>
+                <p>Description</p>
+                <input
+                type="text"
+                autoComplete="off"
+                required
+                aria-describedby="uidnote"
+               >
+                </input>
+                </CardContent>
+                </Card>
+            </Backdrop>
     <div>
       Trips<br/><br/>
     </div>
