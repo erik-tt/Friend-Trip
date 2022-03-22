@@ -17,6 +17,7 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String companyName;
 
     
 
@@ -26,6 +27,7 @@ public class User {
      * @param username user name as a string
      * @param password the password of a string
      * @param role role as a string
+     * @param companyName company name
      */
     public User(String username, String password, String role) {
         setUsername(username);
@@ -43,7 +45,8 @@ public class User {
         return Objects.equals(id, user.id) &&
 			Objects.equals(username, user.username) &&
             Objects.equals(password, user.password) &&
-            Objects.equals(role, user.role);
+            Objects.equals(role, user.role) &&
+            Objects.equals(companyName, user.companyName);
 	}
 
 	@Override
@@ -127,6 +130,9 @@ public class User {
         this.role = role;
     }
 
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     /**
      * gets username
@@ -152,6 +158,10 @@ public class User {
         return role;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
     @Override
 	public String toString() {
 		return "User{" +
@@ -159,6 +169,7 @@ public class User {
 			", username='" + username + '\'' +
             ", password='" + password + '\'' +
             ", role=" + role + '\'' +
+            ", companyName=" + companyName + '\'' +
 			'}';
 	}
 }

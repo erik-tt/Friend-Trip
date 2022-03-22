@@ -12,13 +12,11 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	private final UserRepository userRepository;
 	private final TripRepository tripRepository;
-	private final CommercialUserRepository cUserRepository;
 
 	@Autowired 
-	public DatabaseLoader(UserRepository repository1, TripRepository repository2, CommercialUserRepository repository3) {
+	public DatabaseLoader(UserRepository repository1, TripRepository repository2) {
 		this.userRepository = repository1;
 		this.tripRepository = repository2;
-		this.cUserRepository = repository3;
 	}
 
 	@Override
@@ -33,6 +31,11 @@ public class DatabaseLoader implements CommandLineRunner {
 			this.tripRepository.save(trip1);
 			this.tripRepository.save(trip2);
 			this.tripRepository.save(trip3);
+		}
+		if(!userRepository.existsByUsername("commercial")) {
+			User commercial = new User("commercial", "commercialTest123!", "COMMERCIAL");
+			commercial.setCompanyName("test company");
+			this.userRepository.save(commercial);
 		}
 	}
 }

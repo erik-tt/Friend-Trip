@@ -28,7 +28,7 @@ class UserController {
             Long token = repository.findByUsername(newUser.getUsername()).getId();
             token = token-(token*2);
             return new ResponseEntity<>("{\"token\":\"" + token +"\"}", HttpStatus.OK);
-        } else if (repository.existsByUsername(newUser.getUsername()) && repository.findByUsername(newUser.getUsername()).getPassword().equals(newUser.getPassword()) && repository.findByUsername(newUser.getUsername()).getRole().equals("USER")){
+        } else if (!repository.existsByUsername(newUser.getUsername()) && repository.findByUsername(newUser.getUsername()).getPassword().equals(newUser.getPassword()) && repository.findByUsername(newUser.getUsername()).getRole().equals("ADMIN")){
             Long token = repository.findByUsername(newUser.getUsername()).getId();
             return new ResponseEntity<>("{\"token\":\"" + token +"\"}", HttpStatus.OK);
         } else {
