@@ -2,7 +2,6 @@ package backend.friendtrip.core;
 
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -16,7 +15,7 @@ public class Trip {
     private String description;
     private int difficulty;
     
-    @OneToOne(cascade = CascadeType.ALL) private User owner;
+    @OneToOne private User owner;
 
     /**
      * The constructor of a trip.

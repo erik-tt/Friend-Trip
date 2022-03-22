@@ -20,6 +20,7 @@ class UserController {
   UserController(UserRepository repository) {
     this.repository = repository;
   }
+  
 
   @PostMapping("/api/login")
   ResponseEntity<String> token(@RequestBody User newUser) {
