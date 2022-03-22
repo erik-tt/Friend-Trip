@@ -1,6 +1,9 @@
 import React from 'react';
 import {useRef, useState, useEffect} from "react";
 import axios from "axios";
+import Checkbox from '@mui/material/Checkbox';
+import { FormGroup } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 //Code used inspired by https://www.youtube.com/watch?v=brcHK3P6ChQ (sign up page tutorial)
  
@@ -26,7 +29,13 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const role = "USER";
+  const [companyName, setCompanyName] = useState('');
+  const [commercialUserFocus, setCommercialUserFocus] = useState(false);
+  
+  const [role, setRole] = useState('USER');
+  
+
+  
 
   useEffect(() => {
     userRef.current.focus();
@@ -57,7 +66,7 @@ const SignUp = () => {
 
     try{
       const response = await axios.post("http://localhost:8080/api/users", 
-      JSON.stringify({username, password, role}),
+      JSON.stringify({username, password, role, companyName}),
       {
         headers: {'Content-Type' : 'application/json'},
         withCredentials: true
@@ -67,10 +76,22 @@ const SignUp = () => {
     setSuccess(true);
 
     }catch (exception) {
-
+      console.log('error');
 
     }
   }
+
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    if (checked) {
+      setRole('COMMERCIAL')
+    }
+    else {
+      setRole('USER')
+    }
+  };
 
   return (
     <>
@@ -143,6 +164,25 @@ const SignUp = () => {
         <p id="matchidnote" className={matchFocus && matchPassword && !validMatch ? "instructions" : "offscreen"}>
           Does not match
         </p>
+        <FormGroup>
+            <FormControlLabel control={<Checkbox 
+            checked={checked} 
+            onChange= {handleChange} 
+            inputProps={{ 'aria-label': 'controlled' }} />} label="Commercial User" />
+        </FormGroup>
+
+        <input disabled={!checked ? true : false}
+                placeholder = "Company Name"
+                type="text"
+                id="commercialUser"
+                autoComplete="off"
+                required
+                onChange = {(event) => setCompanyName(event.target.value)}
+                aria-describedby="commercialidnote"
+                onFocus={() => setCommercialUserFocus(true)}
+                onBlur={() => setUsernameFocus(false)}>
+        </input>
+
         <button disabled={!validName || !validPassword || !validMatch ? true : false}>
           Sign Up!
         </button>

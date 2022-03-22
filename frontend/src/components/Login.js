@@ -3,6 +3,7 @@ import {useRef, useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import Logo from './files/Header2.png';
+import SignUp from './SignUp'
 
 
 //const [userNameLog, passwordLog] = useState('');
@@ -61,7 +62,7 @@ const Login = ({ setToken }) => {
     <div className="login-wrapper">
     <><div className="split left">
         <div className="centered">
-          <img height={"400px"} src={Logo} />
+          <img height={"400px"} src={Logo} /> 
         </div>
       </div>
         <>
