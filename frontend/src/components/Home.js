@@ -107,7 +107,8 @@ function Home(props) {
       </Grid>
       </div>
       
-      <div><input type="button" onClick={handleLogout} value="Sign out" /></div></h2>   )
+      <div><input type="button" onClick={handleLogout} value="Sign out" /></div>  
+      </>)
       
 };   
  
