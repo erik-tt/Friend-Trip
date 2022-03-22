@@ -86,27 +86,12 @@ const SignUp = () => {
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (checked) {
-      setRole('COMMERCIAL')
-    }
-    else {
-      setRole('USER')
+      setRole('COMMERCIAL');
     }
   };
 
   return (
     <>
-    {success ? (
-      <section>
-        <h1>Welcome to FriendTrip</h1>
-        <p>
-        <br />
-          <span className="line">
-                 <a href="/">Go to log in</a>
-          </span>
-
-        </p>
-      </section>
-    ) : (
     <section>
       <p ref={errRef} className={errorMsg ? "errmsg" :"offscreen"} aria-live="assertive">{errorMsg}</p>
       <h1>
@@ -187,15 +172,8 @@ const SignUp = () => {
           Sign Up!
         </button>
       </form>
-      <p>
-          Already have an account?<br />
-          <span className="line">
-                 <a href="/">Log in</a>
-          </span>
-      </p>
     </section>
-  )}
-  </>
+    </>
   );
 }
 

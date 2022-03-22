@@ -28,9 +28,12 @@ class UserController {
             Long token = repository.findByUsername(newUser.getUsername()).getId();
             token = token-(token*2);
             return new ResponseEntity<>("{\"token\":\"" + token +"\"}", HttpStatus.OK);
-        } else if (!repository.existsByUsername(newUser.getUsername()) && repository.findByUsername(newUser.getUsername()).getPassword().equals(newUser.getPassword()) && repository.findByUsername(newUser.getUsername()).getRole().equals("ADMIN")){
+        } else if (repository.existsByUsername(newUser.getUsername()) && repository.findByUsername(newUser.getUsername()).getPassword().equals(newUser.getPassword()) && repository.findByUsername(newUser.getUsername()).getRole().equals("USER")){
             Long token = repository.findByUsername(newUser.getUsername()).getId();
             return new ResponseEntity<>("{\"token\":\"" + token +"\"}", HttpStatus.OK);
+        } else if (repository.existsByUsername(newUser.getUsername()) && repository.findByUsername(newUser.getUsername()).getPassword().equals(newUser.getPassword()) && repository.findByUsername(newUser.getUsername()).getRole().equals("COMMERCIAL")){ 
+          Long token = repository.findByUsername(newUser.getUsername()).getId();
+          return new ResponseEntity<>("{\"token\":\"" + token +"\"}", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Username or password inccorrect", HttpStatus.NOT_FOUND);
         }
