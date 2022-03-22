@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Placeholder from "./files/placeholderPost.jpg";
 import Backdrop from '@mui/material/Backdrop';
 import TripRegistration from "./TripRegistration.js"
+import Profile from "./Profile"
 
 import Logo from './files/Header1.png';
 import Avatar from "./files/avatar.png";
@@ -85,46 +86,16 @@ function Home(props) {
       <img src={Logo}/>
       </div>
 
-    <h2>Hello {username}</h2>    
+    <h2>Hello {username}
+    <Button>
+    <img src={Avatar} onClick={handleGoToProfile} height={50}></img>
+    </Button>   </h2>
+
+     
 
     <TripRegistration>TripReg</TripRegistration>
 
-    <div>
-    <img src={Avatar}  height={50}></img>
-    </div><br/>
     
-    <Button>
-    <img src={Avatar} onClick={handleGoToProfile} height={50}></img>
-    </Button><br/>
-    <Button onClick={handleToggle}>CREATE NEW TRIP</Button>
-        <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
-            
-        >
-            <Card sx={{ maxWidth: 600 }}>
-                <Button onClick={handleToggle} variant="text">X</Button>
-               
-                <CardContent>
-                <p>Name</p>
-                <input
-                type="text"
-                autoComplete="off"
-                required
-                aria-describedby="uidnote"
-               >
-                </input>
-                <p>Description</p>
-                <input
-                type="text"
-                autoComplete="off"
-                required
-                aria-describedby="uidnote"
-               >
-                </input>
-                </CardContent>
-                </Card>
-            </Backdrop>
     <div>
       Trips<br/><br/>
     </div>
