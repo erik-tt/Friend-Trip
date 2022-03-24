@@ -23,7 +23,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testCreateUser() {
-        User testUser = new User("test-user", "password!1", "USER");
+        User testUser = new User("test-user", "password!1", "USER", "");
 
         User savedUser = userRepository.save(testUser);
 

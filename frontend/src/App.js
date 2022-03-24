@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
+import Profile from './components/Profile';
 import useToken from './components/useToken';
  
 function App() {
@@ -21,7 +22,10 @@ function App() {
             <Switch>
             
               <Route exact path="/login" component={Login} />
-              <Route path="/" component={Home} />
+              <Route path="/SignUp" component={SignUp} />
+              <Route path="/Profile" component={Profile} /> 
+              <Route path="/Home" component={Home} />
+              
             </Switch>
           </div>
         </div>

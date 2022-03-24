@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Trip {
 
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
     private String title;
     private String description;
     private int difficulty;

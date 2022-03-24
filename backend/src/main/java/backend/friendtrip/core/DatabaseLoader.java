@@ -22,11 +22,12 @@ public class DatabaseLoader implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		if(!userRepository.existsByUsername("admin")){
-			User admin = new User("admin", "1234-Abcd", "ADMIN");
+			User admin = new User("admin", "1234-Abcd", "ADMIN", "Bio");
 			Trip trip1 = new Trip("Hyttetur", "Vi skal ut på tur og kose oss", admin, 3);
 			Trip trip2 = new Trip("Skogstur", "Blasf asfjloasn saft på tur og kose oss", admin, 2);
 			Trip trip3 = new Trip("Telttur", "Blasf asfjloasn saft pasdas asd og kose oss", admin, 2);
 
+			
 			this.userRepository.save(admin);
 			this.tripRepository.save(trip1);
 			this.tripRepository.save(trip2);
