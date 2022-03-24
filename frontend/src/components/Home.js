@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TripRegistration from "./TripRegistration.js"
-import Profile from "./Profile"
 
 import Logo from './files/Header1.png';
 import Avatar from "./files/avatar.png";
@@ -55,10 +54,6 @@ function Home(props) {
   }
   
 
-  const handleGoToProfile = () => {    
-    props.history.push('/Profile');
-  }
-
   //noke med design
   const useStyles = makeStyles({
     table: {
@@ -76,15 +71,13 @@ function Home(props) {
       <img src={Logo}/>
       </div>
 
-    <h2>Hello {username}
-    <Button>
-    <img src={Avatar} onClick={handleGoToProfile} height={50}></img>
-    </Button>   </h2>
-
-     
+    <h2>Hello {username}</h2>    
 
     <TripRegistration>TripReg</TripRegistration>
 
+    <div>
+    <img src={Avatar}  height={50}></img>
+    </div><br/>
     
     <div>
       Trips<br/><br/>

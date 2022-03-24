@@ -2,7 +2,6 @@ package backend.friendtrip.core;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -14,12 +13,11 @@ public class User {
     
     
    
-    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
+    private @Id @GeneratedValue Long id;
     private String username;
     private String password;
     private String role;
-    private String bio;
-
+    private String companyName;
 
     
 
@@ -31,11 +29,10 @@ public class User {
      * @param role role as a string
      * @param companyName company name
      */
-    public User(String username, String password, String role, String bio) {
+    public User(String username, String password, String role) {
         setUsername(username);
         setPassword(password);
         setRole(role);
-        setBio(bio);
     }
     
     protected User(){}
@@ -96,10 +93,6 @@ public class User {
         }
        
         
-    }
-    public void setBio(String bio) {
-        this.bio=bio;
-
     }
 
     /**
@@ -164,9 +157,6 @@ public class User {
     public String getRole() {
         return role;
     }
-    public String getBio() {
-        return this.bio;
-    }
 
     public String getCompanyName() {
         return companyName;
@@ -179,7 +169,7 @@ public class User {
 			", username='" + username + '\'' +
             ", password='" + password + '\'' +
             ", role=" + role + '\'' +
-            ", bio=" + bio + '\'' +
+            ", companyName=" + companyName + '\'' +
 			'}';
 	}
 }
