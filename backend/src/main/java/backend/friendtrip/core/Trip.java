@@ -4,19 +4,18 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 public class Trip {
 
-    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
+    private @Id @GeneratedValue Long id;
     private String title;
     private String description;
     private int difficulty;
     
-    private @ManyToOne User owner;
+    @OneToOne private User owner;
 
     /**
      * The constructor of a trip.
@@ -29,7 +28,7 @@ public class Trip {
         setTitle(title);
         setDescription(description);
         setDifficulty(difficulty);
-        setOwner(owner);
+        this.owner = owner;
     }
 
     public Trip(){}
@@ -98,10 +97,6 @@ public class Trip {
         }
         this.difficulty = difficulty;
     }
-
-    void setOwner(User owner) {
-        this.owner = owner;
-    }
     
     /**
      * Gets the title.
@@ -134,15 +129,4 @@ public class Trip {
     public int getDifficulty(){
         return difficulty;
     }
-
-    @Override
-	public String toString() {
-		return "Trip{" +
-            "id=" + id +
-			", title='" + title + '\'' +
-            ", description='" + description + '\'' +
-            ", difficulty=" + difficulty + '\'' +
-            ", owner=" + owner + '\'' +
-			'}';
-	}
 }
