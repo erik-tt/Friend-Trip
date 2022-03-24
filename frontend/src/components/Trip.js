@@ -73,9 +73,12 @@ function Trip(int) {
     }
 
 
+    if(title!= null){
     return(
-        <><Card  onClick={handleToggle} sx={{ 
-            maxWidth: 345,
+        <><Card  onClick={handleToggle}  sx={{ 
+            //maxWidth: 345,
+            margin: '4%'
+            
              }}>
             <CardActionArea>
                 <CardMedia
@@ -123,13 +126,15 @@ function Trip(int) {
                    
                     
                     <Typography variant="body2" color="text.secondary">
-                        Difficulty:{difficulty}km
+                        Difficulty:{difficulty}
                     </Typography>
 
                 </CardContent>
                 </Card>
             </Backdrop></>
 
-    )
+    ) } else {
+        return(<></>)
+    }
 }
 export default Trip;

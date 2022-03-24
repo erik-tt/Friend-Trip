@@ -26,8 +26,7 @@ function Home(props) {
   const [data, setData] = useState();
   const [username, setUsername] = useState();
   const [tripCount, setTripCount] = useState();
-  const trips = [Trip(2), Trip(3), Trip(4)];
-
+  const [trips, setTrips] = useState(Array.from({length: 50}, (_, i) => i + 1))
  
   const absToken = Math.abs(token);
 
@@ -44,17 +43,16 @@ function Home(props) {
   }
 
   useEffect(()=>{
-    getTrips();
+    getTripCount();
   }, [])
 
-  async function getTrips() {
+  async function getTripCount() {
     await axios.get("http://localhost:8080/api/trips")
     .then((response) => {
       setTripCount(response.data.page.totalElements);
     })
+    
   }
-  
-
   const handleGoToProfile = () => {    
     props.history.push('/Profile');
   }
@@ -86,22 +84,20 @@ function Home(props) {
     <TripRegistration>TripReg</TripRegistration>
 
     
-    <div>
-      Trips<br/><br/>
-    </div>
-    <div id="grid" sx={{
+    
+    <div id="grid" sx={{ 
       
     }}>
        
     
-    <Grid container spacing={5}>
+    <Grid container spacing={1}>
 
     {trips.map((trip) =>
           <Grid xs={4}>
-            {Trip(2)}
+            {Trip(trip)}
           </Grid>
         )}
-      </Grid>
+    </Grid>
       </div>
       
       <Button variant="contained" onClick={() => sessionStorage.clear()}>
