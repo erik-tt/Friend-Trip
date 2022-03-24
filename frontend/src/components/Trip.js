@@ -67,9 +67,12 @@ function Trip(int) {
     async function handleDelete() {
         if (role == 'ADMIN') {
             await axios.delete("http://localhost:8080/api/trips/"+int)
-            .then(console.log("Delete success" + int));
+            .then(alert('Delete success'));
+            window.location.reload();
         }
-        prompt('Only admin can delete trips');
+        else{
+            alert('Only admin can delete trips');
+        }
     }
 
 
