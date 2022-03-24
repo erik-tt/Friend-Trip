@@ -29,7 +29,6 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-<<<<<<< HEAD
   const [companyName, setCompanyName] = useState('');
   const [commercialUserFocus, setCommercialUserFocus] = useState(false);
   
@@ -37,10 +36,8 @@ const SignUp = () => {
   
 
   
-=======
-  const role = "USER";
+  // const role = "USER";
   const bio ="";
->>>>>>> 691dab78de683d5b1bacb10eaaaa8679741628a1
 
   useEffect(() => {
     userRef.current.focus();
@@ -71,11 +68,7 @@ const SignUp = () => {
 
     try{
       const response = await axios.post("http://localhost:8080/api/users", 
-<<<<<<< HEAD
-      JSON.stringify({username, password, role, companyName}),
-=======
-      JSON.stringify({username, password, role, bio}),
->>>>>>> 691dab78de683d5b1bacb10eaaaa8679741628a1
+      JSON.stringify({username, password, role, companyName, bio}),
       {
         headers: {'Content-Type' : 'application/json'},
         withCredentials: true
