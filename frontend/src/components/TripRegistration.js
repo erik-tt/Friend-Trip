@@ -46,6 +46,7 @@ function TripRegistration () {
             withCredentials: true
           }
         );
+        window.location.reload();
         console.log(response.data);
 
         }catch (exception) {

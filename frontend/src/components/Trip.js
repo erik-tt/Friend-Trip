@@ -55,6 +55,13 @@ function Trip(int) {
           setDifficulty(response.data.difficulty);
         })
     }
+    async function hideDeleteButton() {
+        if (role === 'ADMIN') {
+            document.getElementById("deleteButton").style.display = "block";
+        } else {
+            document.getElementById("deleteButton").style.display = "none";
+        }
+      }
 
     const [open, setOpen] = React.useState(false);
     /* const handleClose = () => {
@@ -62,10 +69,11 @@ function Trip(int) {
     }; */
     const handleToggle = () => {
       setOpen(!open);
+      hideDeleteButton();
     };
 
     async function handleDelete() {
-        if (role == 'ADMIN') {
+        if (role === 'ADMIN') {
             await axios.delete("http://localhost:8080/api/trips/"+int)
             .then(alert('Delete success'));
             window.location.reload();
@@ -78,7 +86,7 @@ function Trip(int) {
 
     if(title!= null){
     return(
-        <><Card  onClick={handleToggle}  sx={{ 
+        <><Card onClick={handleToggle}  sx={{ 
             //maxWidth: 345,
             margin: '4%'
             
@@ -109,7 +117,8 @@ function Trip(int) {
         >
             <Card sx={{ maxWidth: 600 }}>
                 <Button onClick={handleToggle} variant="text">X</Button>
-                <Button onClick={handleDelete} variant="text">Delete</Button>
+                <Button id="deleteButton" onClick={handleDelete} variant="text">Delete</Button>
+                
                 <CardMedia
                     component="img"
                     height="300"
