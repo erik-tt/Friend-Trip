@@ -66,6 +66,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+  
     try{
       const response = await axios.post("http://localhost:8080/api/users", 
       JSON.stringify({username, password, role, companyName, bio}),
@@ -87,8 +88,11 @@ const SignUp = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    if (checked) {
-      setRole('COMMERCIAL');
+    if (!checked){
+      setRole('COMMERCIAL')
+    }
+    else{
+      setRole('USER')
     }
   };
 
