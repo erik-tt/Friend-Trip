@@ -15,11 +15,10 @@ public class TripTest {
     String username = "Andrea123";
     String password = "NTNu54321!";
     String role = "USER";
-    String bio ="";
 
     //generates user for test purposes
     private User genUser() {
-        User user = new User(username, password, role, bio);
+        User user = new User(username, password, role);
         return user;
     } 
 
