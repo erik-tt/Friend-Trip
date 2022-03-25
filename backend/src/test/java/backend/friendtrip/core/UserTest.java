@@ -7,10 +7,9 @@ public class UserTest {
 
     private final String username = "Erik_Torvbråten1";
     private final String password = "Hund2022!";
-    private final String role = "USER";
     private final String bio = "";
 
-    private User genUser() {
+    private User genUser(String role) {
 
         User user = new User(username, password, role, bio);
 
@@ -20,8 +19,8 @@ public class UserTest {
     @Test
     public void testConstructor() {
 
-        Assertions.assertEquals(username, genUser().getUsername());
-        Assertions.assertEquals(password, genUser().getPassword());
+        Assertions.assertEquals(username, genUser("USER").getUsername());
+        Assertions.assertEquals(password, genUser("USER").getPassword());
     }
 
     @Test
@@ -32,11 +31,11 @@ public class UserTest {
         String illegalUsername3 = "Usernamethatislongerthanalotofcharacterswhoevenhasthisasausername";
 
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUsername(illegalUsername));
+        -> genUser("USER").setUsername(illegalUsername));
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUsername(illegalUsername2));
+        -> genUser("USER").setUsername(illegalUsername2));
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setUsername(illegalUsername3));
+        -> genUser("USER").setUsername(illegalUsername3));
     }
 
     @Test
@@ -46,9 +45,15 @@ public class UserTest {
         String withoutSpecial = "Detteburdeikkeværtgyldig";
         
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setPassword(shortPassword));
+        -> genUser("USER").setPassword(shortPassword));
         Assertions.assertThrows(IllegalArgumentException.class, () 
-        -> genUser().setPassword(withoutSpecial));
+        -> genUser("USER").setPassword(withoutSpecial));
+    }
+
+    @Test
+    public void testRole() {
+        Assertions.assertEquals(genUser("ADMIN").getRole(), "ADMIN");
+        Assertions.assertEquals(genUser("COMMERCIAL").getRole(), "COMMERCIAL");
     }
 
 }
