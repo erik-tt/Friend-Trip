@@ -101,7 +101,7 @@ const Login = ({ setToken }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required />
-                  <button>Log in</button>
+                  <button>Log in </button>
                 </form>
                 <p>
                   Need an Account?<br />

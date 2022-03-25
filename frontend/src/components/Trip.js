@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
-
+import useToken from './useToken';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -23,16 +23,28 @@ private int difficulty;
 
 function Trip(int) {
     
+    const { token } = useToken();
     const [id, setId] = useState();
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
     const [difficulty, setDifficulty] = useState();
+    const [role, setRole] = useState();
+    
+    const absToken = Math.abs(token);
 
     /* const [owner, setOwner] = useState(); */
 
     useEffect(()=>{
         getData();
+        getRole();
       }, [])
+
+      async function getRole() {
+        await axios.get("http://localhost:8080/api/users/" + absToken)
+        .then((response) => {
+          setRole(response.data.role)
+        })
+      }
     
       async function getData() {
         await axios.get("http://localhost:8080/api/trips/"+int)
@@ -42,6 +54,13 @@ function Trip(int) {
           setDescription(response.data.description);
           setDifficulty(response.data.difficulty);
         })
+    }
+    async function hideDeleteButton() {
+        if (role === 'ADMIN') {
+            document.getElementById("deleteButton").style.display = "block";
+        } else {
+            document.getElementById("deleteButton").style.display = "none";
+        }
       }
 
     const [open, setOpen] = React.useState(false);
@@ -50,11 +69,24 @@ function Trip(int) {
     }; */
     const handleToggle = () => {
       setOpen(!open);
+      hideDeleteButton();
     };
+
+    async function handleDelete() {
+        if (role === 'ADMIN') {
+            await axios.delete("http://localhost:8080/api/trips/"+int)
+            .then(alert('Delete success'));
+            window.location.reload();
+        }
+        else{
+            alert('Only admin can delete trips');
+        }
+    }
+
 
     if(title!= null){
     return(
-        <><Card  onClick={handleToggle}  sx={{ 
+        <><Card onClick={handleToggle}  sx={{ 
             //maxWidth: 345,
             margin: '4%'
             
@@ -85,6 +117,8 @@ function Trip(int) {
         >
             <Card sx={{ maxWidth: 600 }}>
                 <Button onClick={handleToggle} variant="text">X</Button>
+                <Button id="deleteButton" onClick={handleDelete} variant="text">Delete</Button>
+                
                 <CardMedia
                     component="img"
                     height="300"
