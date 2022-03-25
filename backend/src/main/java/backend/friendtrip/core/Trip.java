@@ -98,6 +98,16 @@ public class Trip {
         }
         this.difficulty = difficulty;
     }
+
+    /**
+     * Gets the id.
+     * @return title as a String.
+     */
+    public Long getId() {
+        return id;
+    }
+
+    
     
     /**
      * Gets the title.
