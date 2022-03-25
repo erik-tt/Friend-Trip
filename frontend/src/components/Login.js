@@ -1,9 +1,10 @@
 
-import {useRef, useState, useEffect, useContext} from 'react';
+import React, {useRef, useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import Logo from './files/Header2.png';
 import SignUp from './SignUp'
+import Grid from '@mui/material/Grid';
 
 
 //const [userNameLog, passwordLog] = useState('');
@@ -12,10 +13,11 @@ import SignUp from './SignUp'
 
 
 
-const Login = ({ setToken }) => {
+export default function Login ({ setToken }) {
   
   const userRef= useRef();
   const errRef = useRef();
+  const [switchB, setSwitchB] = React.useState(false);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -52,77 +54,60 @@ const Login = ({ setToken }) => {
     }
   }
    
-        
+  const handleSwitch = () => {
+    setSwitchB(!switchB);
+  };     
  
 
   
 
   return (
     <div className="login-wrapper">
-    <><div className="split left">
-        <div className="centered">
-          <img height={"400px"} src={Logo} /> 
-        </div>
-      </div>
-        <>
-        <div className="split right">
-            <div className="centered">
-        {success ? (
-          
-              <section>
-                <h1>Welcome to Friendrip!</h1>
-                <br />
-                <p>
-                  <a href="/Home">Go to Home</a>
-                </p>
-              </section>
+      
+        <Grid container spacing = {20} justifyContent={"space-between"}>
+          <Grid item xs = {6}>
+                <SignUp>SignUp</SignUp>
+          </Grid>
+          <Grid item xs ={6}  >
             
-            ) : (
-
-              <section>
-                { <p ref={errRef} className={errorMsg ? "errmsg" :
-                "offscreen"} aria-live="assertive">{errorMsg}</p> }
+          <section>
+                <p ref={errRef} className={errorMsg ? "errmsg" :
+                "offscreen"} aria-live="assertive">{errorMsg}</p>
                 <h1>Log in</h1>
                 <form onSubmit={handleSubmit}>
-                  <label htmlFor="username">Username:</label>
+                  <label htmlFor="usernameL">Username:</label>
                   <input
                     type="text"
-                    id="username"
+                    id="usernameL"
                     ref={userRef}
                     autoComplete="off"
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
                     required />
 
-                  <label htmlFor="password">Password:</label>
+                  <label htmlFor="passwordL">Password:</label>
                   <input
                     type="password"
-                    id="password"
+                    id="passwordL"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required />
                   <button>Log in </button>
                 </form>
-                <p>
-                  Need an Account?<br />
-                  <span className="line">
-                    <a href="/SignUp">Sign Up</a>
-                  </span>
-                </p>
-              </section>             
-        )}
-        <SignUp>SignUp</SignUp>
-         </div>
-              </div>
+              </section>
               
-      </></></div>
+              </Grid>
+              
+        </Grid>
+          
+        
+    </div>     
+              
+      
   )
 
-    }
+}
   
-
- 
-export default Login;
 
 Login.propTypes = {
   setToken: PropTypes.func.isRequired

@@ -11,7 +11,11 @@ function App() {
   const { token, setToken } = useToken();
 
   if(!token) {
-    return <Login setToken={setToken} />
+    return (
+    <div className="App">
+      <Login setToken={setToken} />
+    </div>
+    )
   }
 
   return (
@@ -23,8 +27,7 @@ function App() {
             
               <Route exact path="/login" component={Login} />
               <Route path="/SignUp" component={SignUp} />
-              <Route path="/Profile" component={Profile} /> 
-              <Route path="/Home" component={Home} />
+              <Route path="/" component={Home} />
               
             </Switch>
           </div>

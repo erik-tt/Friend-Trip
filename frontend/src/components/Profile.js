@@ -18,6 +18,7 @@ import Avatar from "./files/avatar.png";
 function Profile(props) {
     const { token } = useToken();
     const [open, setOpen] = React.useState(false);
+    const [openBio, setOpenBio] = React.useState(false);
 
     const [username, setUsername] = useState();
     const [role, setRole] = useState();
@@ -89,43 +90,61 @@ function Profile(props) {
         setOpen(!open);
       };
 
+      const handleToggleBio = () => {
+        setOpenBio(!openBio);
+      };
+
 
 return (
   <>
-  <div style={{padding: "20%"}}>
-  <h3>Username:</h3>
-    <h2>{username}</h2>
-    <h3>Bio:</h3>
-    <p >{bio}</p>
-
-    <br/> 
-    <Button onClick={handleToggle}>Change bio</Button>
-    </div>
-  
+  <Button>
+  <img src={Avatar} onClick={handleToggle} height={50}></img>
+  </Button>
 
   <Backdrop
-  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-  open={open}
-  >
+    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    open={open}
+    >
+    <Card sx={{ width: 800 }}>
+    <Button onClick={handleToggle} variant="text">X</Button>
+      <div style={{padding: "20%"}}>
+      <img src={Avatar} height={50}></img>
+      <h3>Username:</h3>
+      <h2>{username}</h2>
+      <h3>Bio:</h3>
+      <p >{bio}</p>
 
-  <Card sx={{ maxWidth: 600 }}>
-  <Button onClick={handleToggle} variant="text">X</Button> 
-  <CardContent>
-  <h2>
-  <div> 
-        
-        
-    
+      <br/> 
+      <Button onClick={handleToggleBio}>Change bio</Button>
+      </div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openBio}
+        >
 
-    <textarea id="biograph" onInput = {(event) => setBio(event.target.value)}></textarea><br/>
-    <button onClick={handleSubmit}>Save</button>
-    </div>
-    </h2>
-    </CardContent>
-  </Card>
+        <Card sx={{ maxWidth: 600 }}>
+        <Button onClick={handleToggleBio} variant="text">X</Button> 
+        <CardContent>
+        <h2>
+        <div> 
+              
+              
+          
+
+          <textarea id="biograph" onInput = {(event) => setBio(event.target.value)}></textarea><br/>
+          <button onClick={handleSubmit}>Save</button>
+          </div>
+          </h2>
+          </CardContent>
+        </Card>
+      </Backdrop>
+    </Card>
+  </Backdrop>
+
+  
   
 
-</Backdrop>
+  
 
 </>
 );

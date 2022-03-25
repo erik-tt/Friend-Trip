@@ -31,7 +31,7 @@ function TripRegistration () {
         event.preventDefault();
     
         try{
-          let rawToken = sessionStorage.getItem("token");
+          let rawToken = localStorage.getItem("token");
           let token = rawToken.match(/\d+/)[0] 
 
           //It gets the token, but it wont store the user correctly
@@ -55,10 +55,6 @@ function TripRegistration () {
         }
       }
     
-    
-    const handleClose = () => {
-      setOpen(false);
-    };
     
     const handleToggle = () => {
       setOpen(!open);

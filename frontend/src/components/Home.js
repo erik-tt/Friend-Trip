@@ -21,7 +21,7 @@ import axios from "axios";
  
 
 function Home(props) {
-  const { token } = useToken();
+  const  { token } = useToken();
 
   const [data, setData] = useState();
   const [username, setUsername] = useState();
@@ -53,10 +53,6 @@ function Home(props) {
     })
     
   }
-  const handleGoToProfile = () => {    
-    props.history.push('/Profile');
-  }
-
   //noke med design
   const useStyles = makeStyles({
     table: {
@@ -64,24 +60,30 @@ function Home(props) {
     },
   });
 
+  function signOut() {
+    localStorage.clear();
+    setTimeout(() => {  window.location.reload()}, 100);
+  }
+
   const classes = useStyles();
 
 
   return (
     <>
    
-      <div>
+      <div width= "100%">
       <img src={Logo}/>
       </div>
 
     <h2>Hello {username}
-    <Button>
-    <img src={Avatar} onClick={handleGoToProfile} height={50}></img>
-    </Button>   </h2>
+    <Profile>Profile</Profile>
+    </h2>
 
      
-
+    <div>
     <TripRegistration>TripReg</TripRegistration>
+    </div>
+
 
     
     
@@ -100,8 +102,8 @@ function Home(props) {
     </Grid>
       </div>
       
-      <Button variant="contained" onClick={() => sessionStorage.clear()}>
-        <Link to={'/login'} className="nav-link">Sign Out</Link>
+      <Button variant="contained" onClick={() =>  signOut()}>
+        Sign Out
       </Button>
       </>)
       
