@@ -62,46 +62,51 @@ export default function Login ({ setToken }) {
   
 
   return (
+    
+    <> 
     <div className="login-wrapper">
-      
-        <Grid container spacing = {20} justifyContent={"space-between"}>
-          <Grid item xs = {6}>
-                <SignUp>SignUp</SignUp>
-          </Grid>
-          <Grid item xs ={6}  >
-            
-          <section>
-                <p ref={errRef} className={errorMsg ? "errmsg" :
-                "offscreen"} aria-live="assertive">{errorMsg}</p>
-                <h1>Log in</h1>
-                <form onSubmit={handleSubmit}>
-                  <label htmlFor="usernameL">Username:</label>
-                  <input
-                    type="text"
-                    id="usernameL"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
-                    required />
-
-                  <label htmlFor="passwordL">Password:</label>
-                  <input
-                    type="password"
-                    id="passwordL"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required />
-                  <button>Log in </button>
-                </form>
-              </section>
-              
-              </Grid>
-              
-        </Grid>
+    <img  height="40%" src={Logo} />
+        <Grid container spacing={20} justifyContent={"space-between"}>
           
-        
-    </div>     
+            
+           
+          <Grid item xs={6}>
+            <SignUp>SignUp</SignUp>
+          </Grid>
+          <Grid item xs={6}>
+
+            <section margin-left="auto" margin-right="auto">
+              <p ref={errRef} className={errorMsg ? "errmsg" :
+                "offscreen"} aria-live="assertive">{errorMsg}</p>
+              <h1>Log in</h1>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="usernameL">Username:</label>
+                <input
+                  type="text"
+                  id="usernameL"
+                  ref={userRef}
+                  autoComplete="off"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                  required />
+
+                <label htmlFor="passwordL">Password:</label>
+                <input
+                  type="password"
+                  id="passwordL"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  required />
+                <button>Log in </button>
+              </form>
+            </section>
+
+          </Grid>
+
+        </Grid>
+
+
+      </div></>     
               
       
   )
