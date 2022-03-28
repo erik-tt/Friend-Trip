@@ -34,7 +34,7 @@ public class DatabaseLoader implements CommandLineRunner {
 			this.tripRepository.save(trip3);
 		}
 		if(!userRepository.existsByUsername("commercial")) {
-			User commercial = new User("commercial", "commercialTest123!", "COMMERCIAL", "bio");
+			User commercial = new User("Adam", "commercialTest123!", "COMMERCIAL", "I am a commercial user.");
 			commercial.setCompanyName("test company");
 			this.userRepository.save(commercial);
 		}

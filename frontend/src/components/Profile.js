@@ -108,11 +108,11 @@ return (
     <Card sx={{ width: 800 }}>
     <Button onClick={handleToggle} variant="text">X</Button>
       <div style={{padding: "20%"}}>
-      <img src={Avatar} height={50}></img>
+      <img src={Avatar} height={50}></img><h5 textcolor="gray">({role})</h5><br/>
       <h3>Username:</h3>
-      <h2>{username}</h2>
+      <h2>{username}</h2><br/>
       <h3>Bio:</h3>
-      <p >{bio}</p>
+      <p>{bio}</p>
 
       <br/> 
       <Button onClick={handleToggleBio}>Change bio</Button>
